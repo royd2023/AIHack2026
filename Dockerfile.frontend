@@ -1,0 +1,26 @@
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+COPY frontend/package*.json ./
+RUN npm ci
+
+COPY frontend/ ./
+
+RUN npm run build
+
+# Serve with nginx
+FROM nginx:alpine
+
+# envsubst is in gettext — install it so we can substitute BACKEND_URL at runtime
+RUN apk add --no-cache gettext
+
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Store nginx config as a template; BACKEND_URL is injected at container startup
+COPY nginx.conf /etc/nginx/templates/default.conf.template
+
+EXPOSE 80
+
+# envsubst replaces ${BACKEND_URL} in the template, then starts nginx
+CMD ["/bin/sh", "-c", "envsubst '$BACKEND_URL' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]

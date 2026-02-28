@@ -9,6 +9,7 @@ Calls Granite to generate 3 personalized plan variants.
 
 import json
 import logging
+import time
 from pathlib import Path
 
 from .watsonx_client import granite_generate, parse_json_response
@@ -44,6 +45,65 @@ def _resolve_career_key(career_path: str, career_paths_dict: dict) -> str:
     return career_path
 
 PLAN_SYSTEM_PROMPT = "You are an expert academic advisor API for Ohio State University's CSE program. You respond with ONLY valid JSON — no explanation, no preamble, no markdown fences. Your entire response must be parseable by json.loads()."
+
+CRITIQUE_SYSTEM_PROMPT = "You are a strict academic advisor auditor for Ohio State University's CSE program. You respond with ONLY valid JSON — no explanation, no preamble, no markdown fences. Your entire response must be parseable by json.loads()."
+
+CRITIQUE_USER_PROMPT = """Review these 3 course plans for a student targeting {career_path}.
+
+PLANS TO REVIEW:
+{plans_json}
+
+AVAILABLE COURSES (with prerequisites):
+{available_courses_json}
+
+Check each plan for:
+1. PREREQUISITE VIOLATIONS — any course scheduled before its prerequisites are completed?
+2. WORKLOAD BALANCE — any semester with 3+ hard technical courses (CSE 3000+ level)?
+3. SKILL COVERAGE GAPS — does the plan address the top skill gaps?
+4. REDUNDANCY — are any high-overlap courses in the same plan?
+5. FEASIBILITY — are all courses plausibly real OSU CSE courses?
+
+Return ONLY this JSON:
+{{
+  "critiques": [
+    {{
+      "plan_name": "...",
+      "issues_found": [
+        {{"type": "prerequisite_violation|workload|coverage_gap|redundancy|feasibility", "severity": "critical|warning", "description": "specific issue", "fix": "specific recommendation"}}
+      ],
+      "score": 0
+    }}
+  ]
+}}"""
+
+REFINEMENT_SYSTEM_PROMPT = "You are an expert academic advisor API for Ohio State University's CSE program. You respond with ONLY valid JSON — no explanation, no preamble, no markdown fences. Your entire response must be parseable by json.loads()."
+
+REFINEMENT_USER_PROMPT = """Fix all critical issues in these course plans while preserving each plan's strategy.
+
+ORIGINAL PLANS:
+{plans_json}
+
+CRITIQUES:
+{critiques_json}
+
+AVAILABLE COURSES:
+{available_courses_json}
+
+Generate improved plans fixing every critical issue. Return ONLY this JSON (same format as original plans, with one extra field per plan):
+{{
+  "plans": [
+    {{
+      "plan_name": "...",
+      "icon": "...",
+      "strategy": "...",
+      "semesters": [...],
+      "projected_skill_coverage": 0,
+      "estimated_semesters_remaining": 0,
+      "top_skills_gained": [],
+      "improvements_made": ["list of what was fixed"]
+    }}
+  ]
+}}"""
 
 PLAN_USER_PROMPT = """Student: {student_name}
 Completed courses: {completed_courses}
@@ -401,6 +461,13 @@ def analyze_gap(
 
     # Stage 3d: Generate 3 plans with Granite
     plans = []
+    critique_report = []
+    was_refined = False
+    refinement_summary = ""
+    eligible_courses_json = json.dumps(
+        [c for c in available_courses[:20] if c["prerequisites_met"]], indent=2
+    )
+
     if skill_index and fingerprints:
         try:
             user_msg = PLAN_USER_PROMPT.format(
@@ -411,9 +478,7 @@ def analyze_gap(
                 ),
                 target_career=target_career,
                 skill_gaps_json=json.dumps(skill_gaps[:15], indent=2),
-                available_courses_json=json.dumps(
-                    [c for c in available_courses[:20] if c["prerequisites_met"]], indent=2
-                ),
+                available_courses_json=eligible_courses_json,
             )
             raw = granite_generate(PLAN_SYSTEM_PROMPT, user_msg)
             parsed = parse_json_response(raw)
@@ -421,6 +486,50 @@ def analyze_gap(
         except Exception as e:
             logger.error(f"Plan generation failed: {e}")
             plans = []
+
+    # Stage 3e: Self-critique loop — Granite reviews its own plans
+    if plans:
+        try:
+            time.sleep(2)
+            critique_msg = CRITIQUE_USER_PROMPT.format(
+                career_path=target_career,
+                plans_json=json.dumps(plans, indent=2),
+                available_courses_json=eligible_courses_json,
+            )
+            raw_critique = granite_generate(CRITIQUE_SYSTEM_PROMPT, critique_msg)
+            critique_parsed = parse_json_response(raw_critique)
+            critique_report = critique_parsed.get("critiques", [])
+            logger.info(f"Critique report: {json.dumps(critique_report)}")
+
+            # Check if any plan has critical issues
+            has_critical = any(
+                issue.get("severity") == "critical"
+                for c in critique_report
+                for issue in c.get("issues_found", [])
+            )
+
+            if has_critical:
+                time.sleep(2)
+                refinement_msg = REFINEMENT_USER_PROMPT.format(
+                    plans_json=json.dumps(plans, indent=2),
+                    critiques_json=json.dumps(critique_report, indent=2),
+                    available_courses_json=eligible_courses_json,
+                )
+                raw_refined = granite_generate(REFINEMENT_SYSTEM_PROMPT, refinement_msg)
+                refined_parsed = parse_json_response(raw_refined)
+                refined_plans = refined_parsed.get("plans", [])
+
+                if refined_plans:
+                    plans = refined_plans
+                    was_refined = True
+                    fixes = []
+                    for p in plans:
+                        for fix in p.get("improvements_made", []):
+                            fixes.append(fix)
+                    refinement_summary = "; ".join(fixes[:4]) if fixes else "Issues corrected by AI self-review"
+                    logger.info(f"Plans refined: {refinement_summary}")
+        except Exception as e:
+            logger.warning(f"Self-critique loop failed (using original plans): {e}")
 
     # Overlap warnings for completed + recommended courses
     recommended_ids = set()
@@ -506,6 +615,9 @@ def analyze_gap(
         "skill_gaps": skill_gaps[:15],
         "radar_data": radar_data,
         "plans": plans,
+        "critique_report": critique_report,
+        "was_refined": was_refined,
+        "refinement_summary": refinement_summary,
         "course_overlaps": relevant_overlaps,
         "top_skills_to_acquire": [g["name"] for g in skill_gaps[:8]],
         "pipeline_stats": {

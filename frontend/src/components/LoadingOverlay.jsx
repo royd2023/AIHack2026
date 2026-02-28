@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react'
 const STEPS = [
   { id: 1, label: 'Mapping your current skills with IBM Granite', duration: 3000 },
   { id: 2, label: 'Analyzing skill gaps against real market demand', duration: 5000 },
-  { id: 3, label: 'IBM Granite is optimizing your course plan', duration: null },
+  { id: 3, label: 'IBM Granite is optimizing your course plan', duration: 12000 },
+  { id: 4, label: 'Verifying plan accuracy — AI self-review in progress', duration: null },
 ]
 
 export default function LoadingOverlay({ studentName }) {

@@ -35,6 +35,15 @@ export default function HowItWorks({ stats }) {
       body: 'IBM Granite runs multi-objective optimization generating 3 Pareto-optimal plans balancing career alignment, prerequisites, and workload.',
       detail: 'Gap score = demand_score × (1 − student_proficiency)',
     },
+    {
+      color: 'text-ibm-green',
+      borderColor: 'border-ibm-green/20',
+      accentBar: 'bg-ibm-green',
+      title: 'Self-Verification',
+      step: '04',
+      body: 'IBM Granite reviews its own recommendations, checking for prerequisite violations, workload imbalance, and skill coverage gaps — then auto-corrects any issues found.',
+      detail: 'Critique → Refine loop · graceful degradation on failure',
+    },
   ]
 
   return (
@@ -45,7 +54,7 @@ export default function HowItWorks({ stats }) {
       >
         <div className="text-left">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-ibm-gray-50 mb-1">How Our AI Works</p>
-          <p className="font-mono text-xs text-ibm-gray-70">3-stage IBM Granite pipeline — click to expand</p>
+          <p className="font-mono text-xs text-ibm-gray-70">4-stage IBM Granite pipeline — click to expand</p>
         </div>
         <span className={`font-mono text-ibm-gray-50 text-sm transition-transform inline-block ${open ? 'rotate-180' : ''}`}>▾</span>
       </button>
@@ -53,7 +62,7 @@ export default function HowItWorks({ stats }) {
       {open && (
         <div className="border-t border-ibm-gray-80 animate-fade-in">
           {/* Stage cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-ibm-gray-80">
+          <div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-ibm-gray-80">
             {cards.map((card) => (
               <div key={card.step} className="p-6 relative overflow-hidden">
                 <div className={`absolute top-0 left-0 right-0 h-0.5 ${card.accentBar}`} />
@@ -79,6 +88,10 @@ export default function HowItWorks({ stats }) {
               <span className="bg-ibm-gray-80 border border-ibm-gray-70 text-ibm-gray-30 px-2 py-1">Granite + Embeddings</span>
               <span className="text-ibm-gray-70">→</span>
               <span className="bg-ibm-purple/10 border border-ibm-purple/20 text-ibm-purple px-2 py-1">3 optimized plans</span>
+              <span className="text-ibm-gray-70">→</span>
+              <span className="bg-ibm-gray-80 border border-ibm-gray-70 text-ibm-gray-30 px-2 py-1">Granite self-critique</span>
+              <span className="text-ibm-gray-70">→</span>
+              <span className="bg-ibm-green/10 border border-ibm-green/20 text-ibm-green px-2 py-1">verified plans</span>
             </div>
           </div>
 

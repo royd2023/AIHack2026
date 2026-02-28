@@ -3,7 +3,8 @@ from __future__ import annotations
 Shared IBM watsonx.ai client utilities.
 All pipeline stages import from here.
 
-Uses ibm-watson-machine-learning SDK (the available version on this pip mirror).
+Uses ibm-watson-machine-learning SDK directly (ibm-watsonx-ai stub 0.0.5
+does not expose Credentials on Python 3.9).
 """
 
 import os
@@ -21,35 +22,34 @@ logger = logging.getLogger(__name__)
 _text_model = None
 _embedding_model = None
 
-WML_CREDENTIALS = None
-PROJECT_ID = None
+_WML_CREDENTIALS: dict | None = None
+PROJECT_ID: str | None = None
 
 
 def _get_wml_credentials():
-    global WML_CREDENTIALS, PROJECT_ID
-    if WML_CREDENTIALS is None:
-        from ibm_watsonx_ai import Credentials
-        WML_CREDENTIALS = Credentials(
-            url=os.getenv("WATSONX_URL", "https://us-south.ml.cloud.ibm.com"),
-            api_key=os.getenv("WATSONX_API_KEY"),
-        )
+    global _WML_CREDENTIALS, PROJECT_ID
+    if _WML_CREDENTIALS is None:
+        _WML_CREDENTIALS = {
+            "url": os.getenv("WATSONX_URL", "https://us-south.ml.cloud.ibm.com"),
+            "apikey": os.getenv("WATSONX_API_KEY"),
+        }
         PROJECT_ID = os.getenv("WATSONX_PROJECT_ID")
-    return WML_CREDENTIALS, PROJECT_ID
+    return _WML_CREDENTIALS, PROJECT_ID
 
 
 def get_text_model():
     global _text_model
     if _text_model is None:
-        from ibm_watsonx_ai.foundation_models import ModelInference
-        from ibm_watsonx_ai.metanames import GenTextParamsMetaNames as GenParams
+        from ibm_watson_machine_learning.foundation_models import Model
+        from ibm_watson_machine_learning.metanames import GenTextParamsMetaNames as GenParams
         creds, project_id = _get_wml_credentials()
         params = {
             GenParams.MAX_NEW_TOKENS: 8192,
             GenParams.TEMPERATURE: 0.1,
             GenParams.REPETITION_PENALTY: 1.1,
         }
-        _text_model = ModelInference(
-            model_id="ibm/granite-4-h-small",
+        _text_model = Model(
+            model_id="ibm/granite-3-3-8b-instruct",
             params=params,
             credentials=creds,
             project_id=project_id,
@@ -60,9 +60,9 @@ def get_text_model():
 def get_embedding_model():
     global _embedding_model
     if _embedding_model is None:
-        from ibm_watsonx_ai.foundation_models import Embeddings
+        from ibm_watson_machine_learning.foundation_models import Model
         creds, project_id = _get_wml_credentials()
-        _embedding_model = Embeddings(
+        _embedding_model = Model(
             model_id="ibm/granite-embedding-278m-multilingual",
             credentials=creds,
             project_id=project_id,
@@ -71,21 +71,19 @@ def get_embedding_model():
 
 
 def granite_generate(system: str, user: str, retries: int = 3) -> str:  # type: ignore[return]
-    """Call Granite via the chat API with retry + exponential backoff."""
+    """Call Granite via generate_text with retry + exponential backoff."""
     model = get_text_model()
-    messages = [
-        {"role": "system", "content": system},
-        {"role": "user", "content": user},
-    ]
+    # ibm-watson-machine-learning uses a single prompt string; format as chat turns
+    prompt = f"<|system|>\n{system}\n<|user|>\n{user}\n<|assistant|>\n"
     for attempt in range(retries):
         try:
-            response = model.chat(messages=messages, params={"max_tokens": 8192})
-            return response["choices"][0]["message"]["content"]
+            response = model.generate_text(prompt=prompt)
+            return response
         except Exception as e:
             wait = 2 ** attempt
-            logger.warning(f"Granite chat attempt {attempt + 1} failed: {e}. Retrying in {wait}s...")
+            logger.warning(f"Granite generate attempt {attempt + 1} failed: {e}. Retrying in {wait}s...")
             time.sleep(wait)
-    raise RuntimeError(f"Granite chat failed after {retries} attempts")
+    raise RuntimeError(f"Granite generate failed after {retries} attempts")
 
 
 def granite_embed(texts: List[str]) -> List[List[float]]:

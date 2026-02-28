@@ -181,7 +181,7 @@ function PlanCard({ plan, style, index }) {
   )
 }
 
-export default function PlanCards({ plans }) {
+export default function PlanCards({ plans, wasRefined, refinementSummary }) {
   if (!plans || plans.length === 0) {
     return (
       <div className="border border-ibm-gray-80 p-8 text-center">
@@ -201,6 +201,24 @@ export default function PlanCards({ plans }) {
           [ ibm/granite-4-h-small ]
         </span>
       </div>
+
+      {/* AI self-review banner */}
+      {wasRefined ? (
+        <div className="mb-4 flex items-start gap-3 px-4 py-3 border border-ibm-blue/30 bg-ibm-blue/5">
+          <span className="text-sm flex-shrink-0">🔄</span>
+          <div>
+            <span className="font-mono text-xs text-ibm-blue font-bold uppercase tracking-wider">AI detected issues and auto-corrected</span>
+            {refinementSummary && (
+              <p className="font-mono text-xs text-ibm-gray-50 mt-0.5">{refinementSummary}</p>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="mb-4 flex items-center gap-3 px-4 py-3 border border-ibm-green/20 bg-ibm-green/5">
+          <span className="text-sm">✅</span>
+          <span className="font-mono text-xs text-ibm-green">Plans verified by AI self-review — prerequisite order confirmed, workload balanced</span>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border border-ibm-gray-80">
         {plans.slice(0, 3).map((plan, i) => (

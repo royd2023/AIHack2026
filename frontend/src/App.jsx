@@ -311,7 +311,7 @@ function ResultsSection({ data }) {
         <GapCards gaps={data.skill_gaps} />
 
         {/* Plan cards */}
-        <PlanCards plans={data.plans} />
+        <PlanCards plans={data.plans} wasRefined={data.was_refined} refinementSummary={data.refinement_summary} />
 
         {/* Overlap warnings */}
         {data.course_overlaps && data.course_overlaps.length > 0 && (

@@ -1,0 +1,22 @@
+FROM python:3.13-slim
+
+WORKDIR /app
+
+# Install dependencies first (layer caching)
+COPY backend/requirements.txt ./backend/requirements.txt
+RUN pip install --no-cache-dir -r backend/requirements.txt
+
+# Copy backend source and raw data
+COPY backend/ ./backend/
+COPY raw_data/ ./raw_data/
+
+# Copy pre-generated pipeline data if it exists (optional — won't fail if empty)
+# The trailing slash on the destination ensures the dir is created
+RUN mkdir -p ./backend/data
+COPY backend/data/ ./backend/data/
+
+ENV PYTHONUNBUFFERED=1
+
+EXPOSE 8000
+
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
