@@ -43,51 +43,42 @@ def _resolve_career_key(career_path: str, career_paths_dict: dict) -> str:
             return key
     return career_path
 
-PLAN_GENERATION_PROMPT = """You are an expert academic advisor for Ohio State University's CSE program. You have deep knowledge of the curriculum and job market.
+PLAN_SYSTEM_PROMPT = "You are an expert academic advisor API for Ohio State University's CSE program. You respond with ONLY valid JSON — no explanation, no preamble, no markdown fences. Your entire response must be parseable by json.loads()."
 
-STUDENT STATE:
-- Name: {student_name}
-- Completed courses: {completed_courses}
-- Current skill coverage: {current_skills_json}
-- Target career: {target_career}
+PLAN_USER_PROMPT = """Student: {student_name}
+Completed courses: {completed_courses}
+Current skills: {current_skills_json}
+Target career: {target_career}
 
-TOP SKILL GAPS (ranked by market value):
+Top skill gaps (by market demand):
 {skill_gaps_json}
 
-AVAILABLE COURSES (ranked by gap-closure value — these are the real OSU courses):
+Available courses (by gap-closure value):
 {available_courses_json}
 
-Generate 3 distinct semester-by-semester plans starting Fall 2026:
+Generate exactly 3 semester-by-semester plans starting Fall 2026 (2-4 semesters each, max 18 credits/semester, respect prerequisites, only use courses from the catalog above).
+- Plan A "Fastest to Job-Ready": prioritize highest-demand skills
+- Plan B "Maximum Optionality": broad transferable skills across paths
+- Plan C "Balanced Growth": mix career-aligned with manageable workload
 
-Plan A — "Fastest to Job-Ready": Front-load the highest-demand technical skills. Close critical gaps ASAP. Prioritize skills with demand_score > 0.7.
-Plan B — "Maximum Optionality": Choose courses that build transferable skills across multiple career paths. Hedge against career uncertainty with breadth.
-Plan C — "Balanced Growth": Mix career-aligned courses with manageable workload. No more than 2 heavy technical courses per semester.
-
-CONSTRAINTS (HARD RULES — do not violate):
-- Maximum 18 credit hours per semester (typically 4-5 courses)
-- Respect ALL prerequisites listed — never recommend a course if prerequisites aren't met
-- Only use course numbers from the provided catalog
-- Start from Fall 2026
-- Plan 2-4 semesters ahead
-
-Respond ONLY with valid JSON, no markdown, no backticks:
+Return ONLY this JSON (no other text):
 {{
   "plans": [
     {{
-      "plan_name": "string",
-      "icon": "🚀|🔀|⚖️",
-      "strategy": "2 sentence tradeoff description",
+      "plan_name": "Fastest to Job-Ready",
+      "icon": "🚀",
+      "strategy": "Two sentence strategy description.",
       "semesters": [
         {{
           "semester": "Fall 2026",
-          "courses": [{{"number": "CSE XXXX", "title": "Course Title", "credits": 3}}],
+          "courses": [{{"number": "CSE 3341", "title": "Course Title", "credits": 3}}],
           "total_credits": 15,
-          "rationale": "1 sentence explaining why these courses this semester"
+          "rationale": "One sentence rationale."
         }}
       ],
-      "projected_skill_coverage": 0-100,
+      "projected_skill_coverage": 80,
       "estimated_semesters_remaining": 2,
-      "top_skills_gained": ["skill1", "skill2", "skill3", "skill4", "skill5"]
+      "top_skills_gained": ["skill1", "skill2", "skill3"]
     }}
   ]
 }}"""
@@ -412,7 +403,7 @@ def analyze_gap(
     plans = []
     if skill_index and fingerprints:
         try:
-            prompt = PLAN_GENERATION_PROMPT.format(
+            user_msg = PLAN_USER_PROMPT.format(
                 student_name=student_name,
                 completed_courses=json.dumps(completed_course_details, indent=2),
                 current_skills_json=json.dumps(
@@ -424,7 +415,7 @@ def analyze_gap(
                     [c for c in available_courses[:20] if c["prerequisites_met"]], indent=2
                 ),
             )
-            raw = granite_generate(prompt)
+            raw = granite_generate(PLAN_SYSTEM_PROMPT, user_msg)
             parsed = parse_json_response(raw)
             plans = parsed.get("plans", [])
         except Exception as e:
@@ -521,7 +512,7 @@ def analyze_gap(
             "job_postings_analyzed": si_metadata.get("total_postings_analyzed", 0),
             "courses_fingerprinted": len(fingerprints),
             "data_sources": "LinkedIn, Indeed, Glassdoor (job postings); syllabi.engineering.osu.edu (course data)",
-            "model_used": "ibm/granite-3-3-8b-instruct",
+            "model_used": "ibm/granite-4-h-small",
             "embedding_model": "ibm/granite-embedding-278m-multilingual",
         },
     }

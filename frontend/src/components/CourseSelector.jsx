@@ -38,7 +38,8 @@ export default function CourseSelector({ courses, selected, onChange }) {
     <div ref={containerRef} className="relative">
       {/* Search input */}
       <div
-        className="flex items-center gap-2 bg-ibm-gray-80 border border-ibm-gray-70 rounded-lg px-4 py-3 cursor-text"
+        className="flex items-center gap-2 border border-ibm-gray-70 rounded-lg px-4 py-3 cursor-text"
+        style={{ backgroundColor: '#393939' }}
         onClick={() => setIsOpen(true)}
       >
         <svg className="w-4 h-4 text-ibm-gray-50 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -60,7 +61,7 @@ export default function CourseSelector({ courses, selected, onChange }) {
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute z-40 w-full mt-2 bg-ibm-gray-90 border border-ibm-gray-70 rounded-lg shadow-2xl max-h-72 overflow-y-auto">
+        <div className="absolute z-40 w-full mt-2 border border-ibm-gray-70 rounded-lg shadow-2xl max-h-72 overflow-y-auto" style={{ backgroundColor: '#262626' }}>
           {filtered.length === 0 ? (
             <div className="px-4 py-8 text-center text-ibm-gray-50 text-sm">
               No courses matching "{search}"

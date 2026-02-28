@@ -47,7 +47,7 @@ export default function LoadingOverlay({ studentName }) {
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-ibm-blue/10 border border-ibm-blue/30 rounded-full px-4 py-2 mb-6">
             <span className="w-2 h-2 rounded-full bg-ibm-blue animate-pulse" />
-            <span className="text-ibm-blue text-sm font-mono">ibm/granite-3-3-8b-instruct</span>
+            <span className="text-ibm-blue text-sm font-mono">ibm/granite-4-h-small</span>
           </div>
           <h2 className="text-2xl font-semibold text-white mb-2">
             Analyzing {studentName ? `${studentName}'s` : 'your'} path{dots}
@@ -77,13 +77,12 @@ export default function LoadingOverlay({ studentName }) {
             return (
               <div
                 key={step.id}
-                className={`flex items-center gap-4 p-4 rounded-lg border transition-all duration-500 ${
-                  isDone
+                className={`flex items-center gap-4 p-4 rounded-lg border transition-all duration-500 ${isDone
                     ? 'bg-ibm-green/5 border-ibm-green/20 opacity-70'
                     : isActive
-                    ? 'bg-ibm-blue/10 border-ibm-blue/30 blue-glow'
-                    : 'bg-ibm-gray-90/50 border-ibm-gray-80/50 opacity-40'
-                }`}
+                      ? 'bg-ibm-blue/10 border-ibm-blue/30 blue-glow'
+                      : 'bg-ibm-gray-90/50 border-ibm-gray-80/50 opacity-40'
+                  }`}
               >
                 {/* Status indicator */}
                 <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
@@ -115,7 +114,7 @@ export default function LoadingOverlay({ studentName }) {
         <div className="mt-8 text-center">
           <p className="text-ibm-gray-70 text-xs">
             Powered by{' '}
-            <span className="text-ibm-blue font-mono">ibm/granite-3-3-8b-instruct</span>
+            <span className="text-ibm-blue font-mono">ibm/granite-4-h-small</span>
             {' '}+{' '}
             <span className="text-ibm-cyan font-mono">ibm/granite-embedding-278m-multilingual</span>
             {' '}on{' '}

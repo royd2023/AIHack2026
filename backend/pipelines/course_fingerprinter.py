@@ -223,7 +223,7 @@ def run_course_fingerprinting() -> dict:
         "metadata": {
             "courses_analyzed": len(courses),
             "source": "syllabi.engineering.osu.edu — official OSU syllabi",
-            "model_used": "ibm/granite-3-3-8b-instruct",
+            "model_used": "ibm/granite-4-h-small",
             "embedding_model": "ibm/granite-embedding-278m-multilingual",
         },
         "courses": fingerprints,

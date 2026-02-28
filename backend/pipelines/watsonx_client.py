@@ -28,10 +28,11 @@ PROJECT_ID = None
 def _get_wml_credentials():
     global WML_CREDENTIALS, PROJECT_ID
     if WML_CREDENTIALS is None:
-        WML_CREDENTIALS = {
-            "url": os.getenv("WATSONX_URL", "https://us-south.ml.cloud.ibm.com"),
-            "apikey": os.getenv("WATSONX_API_KEY"),
-        }
+        from ibm_watsonx_ai import Credentials
+        WML_CREDENTIALS = Credentials(
+            url=os.getenv("WATSONX_URL", "https://us-south.ml.cloud.ibm.com"),
+            api_key=os.getenv("WATSONX_API_KEY"),
+        )
         PROJECT_ID = os.getenv("WATSONX_PROJECT_ID")
     return WML_CREDENTIALS, PROJECT_ID
 
@@ -39,16 +40,16 @@ def _get_wml_credentials():
 def get_text_model():
     global _text_model
     if _text_model is None:
-        from ibm_watson_machine_learning.foundation_models import Model
-        from ibm_watson_machine_learning.metanames import GenTextParamsMetaNames as GenParams
+        from ibm_watsonx_ai.foundation_models import ModelInference
+        from ibm_watsonx_ai.metanames import GenTextParamsMetaNames as GenParams
         creds, project_id = _get_wml_credentials()
         params = {
-            GenParams.MAX_NEW_TOKENS: 2048,
+            GenParams.MAX_NEW_TOKENS: 8192,
             GenParams.TEMPERATURE: 0.1,
             GenParams.REPETITION_PENALTY: 1.1,
         }
-        _text_model = Model(
-            model_id="ibm/granite-3-3-8b-instruct",
+        _text_model = ModelInference(
+            model_id="ibm/granite-4-h-small",
             params=params,
             credentials=creds,
             project_id=project_id,
@@ -59,7 +60,7 @@ def get_text_model():
 def get_embedding_model():
     global _embedding_model
     if _embedding_model is None:
-        from ibm_watson_machine_learning.foundation_models import Embeddings
+        from ibm_watsonx_ai.foundation_models import Embeddings
         creds, project_id = _get_wml_credentials()
         _embedding_model = Embeddings(
             model_id="ibm/granite-embedding-278m-multilingual",
@@ -69,18 +70,22 @@ def get_embedding_model():
     return _embedding_model
 
 
-def granite_generate(prompt: str, retries: int = 3) -> str:  # type: ignore[return]
-    """Call Granite text generation with retry + exponential backoff."""
+def granite_generate(system: str, user: str, retries: int = 3) -> str:  # type: ignore[return]
+    """Call Granite via the chat API with retry + exponential backoff."""
     model = get_text_model()
+    messages = [
+        {"role": "system", "content": system},
+        {"role": "user", "content": user},
+    ]
     for attempt in range(retries):
         try:
-            response = model.generate_text(prompt=prompt)
-            return response
+            response = model.chat(messages=messages, params={"max_tokens": 8192})
+            return response["choices"][0]["message"]["content"]
         except Exception as e:
             wait = 2 ** attempt
-            logger.warning(f"Granite generate attempt {attempt + 1} failed: {e}. Retrying in {wait}s...")
+            logger.warning(f"Granite chat attempt {attempt + 1} failed: {e}. Retrying in {wait}s...")
             time.sleep(wait)
-    raise RuntimeError(f"Granite generate failed after {retries} attempts")
+    raise RuntimeError(f"Granite chat failed after {retries} attempts")
 
 
 def granite_embed(texts: List[str]) -> List[List[float]]:

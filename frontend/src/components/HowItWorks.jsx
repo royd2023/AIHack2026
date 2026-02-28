@@ -114,7 +114,7 @@ export default function HowItWorks({ stats }) {
           <div className="text-center mt-4">
             <p className="text-ibm-gray-70 text-xs">
               Powered by{' '}
-              <span className="text-ibm-blue font-mono">ibm/granite-3-3-8b-instruct</span>
+              <span className="text-ibm-blue font-mono">ibm/granite-4-h-small</span>
               {' '}and{' '}
               <span className="text-ibm-cyan font-mono">ibm/granite-embedding-278m-multilingual</span>
               {' '}on{' '}

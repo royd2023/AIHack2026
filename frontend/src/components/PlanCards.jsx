@@ -205,7 +205,7 @@ export default function PlanCards({ plans }) {
           </p>
         </div>
         <div className="chip bg-ibm-blue/10 text-ibm-blue border border-ibm-blue/30 text-xs font-mono">
-          ibm/granite-3-3-8b-instruct
+          ibm/granite-4-h-small
         </div>
       </div>
 

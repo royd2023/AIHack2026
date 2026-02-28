@@ -145,7 +145,7 @@ def run_skill_extraction() -> dict:
             "total_postings_analyzed": len(postings),
             "sources": "LinkedIn, Indeed, Glassdoor — real postings",
             "date_collected": "2026-02-27",
-            "model_used": "ibm/granite-3-3-8b-instruct",
+            "model_used": "ibm/granite-4-h-small",
         },
         "career_paths": career_skill_data,
         "skill_co_occurrence_matrix": co_matrix,

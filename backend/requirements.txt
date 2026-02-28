@@ -1,7 +1,7 @@
 fastapi
 uvicorn[standard]
-ibm-watson-machine-learning
+ibm-watsonx-ai
 python-dotenv
-numpy<2
+numpy>=2
 scikit-learn
 httpx

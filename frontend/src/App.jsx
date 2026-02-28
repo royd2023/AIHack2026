@@ -31,7 +31,7 @@ function Navbar() {
         </div>
         <div className="flex items-center gap-2 text-ibm-gray-50 text-xs">
           <span className="hidden sm:inline">Powered by</span>
-          <span className="font-mono text-ibm-gray-30">ibm/granite-3-3-8b-instruct</span>
+          <span className="font-mono text-ibm-gray-30">ibm/granite-4-h-small</span>
         </div>
       </div>
     </nav>
@@ -138,7 +138,8 @@ function InputSection({ courses, careers, onAnalyze, loading }) {
               value={name}
               onChange={e => setName(e.target.value)}
               placeholder="e.g., Roy"
-              className="w-full bg-ibm-gray-80 border border-ibm-gray-70 rounded-lg px-4 py-3 text-white placeholder-ibm-gray-50 text-sm outline-none focus:border-ibm-blue transition-colors"
+              className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-colors border border-ibm-gray-70 focus:border-ibm-blue"
+              style={{ backgroundColor: '#393939', color: '#ffffff', colorScheme: 'dark' }}
             />
           </div>
 
@@ -153,11 +154,10 @@ function InputSection({ courses, careers, onAnalyze, loading }) {
                   key={c.id}
                   type="button"
                   onClick={() => setCareer(c.id)}
-                  className={`flex flex-col items-start gap-1 p-4 rounded-xl border-2 text-left transition-all duration-200 ${
-                    career === c.id
+                  className={`flex flex-col items-start gap-1 p-4 rounded-xl border-2 text-left transition-all duration-200 ${career === c.id
                       ? 'border-ibm-blue bg-ibm-blue/10 text-white'
                       : 'border-ibm-gray-70 bg-ibm-gray-80/50 text-ibm-gray-30 hover:border-ibm-gray-50'
-                  }`}
+                    }`}
                 >
                   <span className="text-2xl">{c.emoji}</span>
                   <span className="font-semibold text-sm">{c.label}</span>
@@ -363,7 +363,7 @@ export default function App() {
           </div>
           <div className="flex items-center gap-2 text-xs">
             <span className="text-ibm-gray-70">Powered by</span>
-            <span className="font-mono text-ibm-blue">ibm/granite-3-3-8b-instruct</span>
+            <span className="font-mono text-ibm-blue">ibm/granite-4-h-small</span>
             <span className="text-ibm-gray-70">on</span>
             <span className="text-white font-semibold">IBM watsonx.ai</span>
           </div>

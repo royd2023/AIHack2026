@@ -38,7 +38,7 @@ async def root():
         "description": "AI-powered academic planning aligned with your career",
         "powered_by": "IBM Granite on watsonx.ai",
         "models": {
-            "text_generation": "ibm/granite-3-3-8b-instruct",
+            "text_generation": "ibm/granite-4-h-small",
             "embeddings": "ibm/granite-embedding-278m-multilingual",
         },
     }
