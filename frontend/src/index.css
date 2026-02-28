@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ibm-blue: #4589ff;
+  --ibm-blue-dark: #0f62fe;
+  --ibm-gray-100: #161616;
+  --ibm-gray-90: #262626;
+  --ibm-gray-80: #393939;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #161616;
+  color: #f4f4f4;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #262626; }
+::-webkit-scrollbar-thumb { background: #525252; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4589ff; }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #4589ff 0%, #33b1ff 50%, #08bdba 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(38, 38, 38, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+/* IBM Blue glow */
+.blue-glow {
+  box-shadow: 0 0 30px rgba(69, 137, 255, 0.15);
+}
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #4589ff, #33b1ff, #08bdba);
+  z-index: -1;
+  opacity: 0.6;
+}
+
+/* Chip / badge */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Shimmer loading */
+.shimmer {
+  background: linear-gradient(90deg, #262626 0%, #393939 50%, #262626 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Demand bar fill */
+.demand-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease-out;
+}
+
+/* Smooth accordion */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.accordion-content.open {
+  max-height: 1000px;
+}

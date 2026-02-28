@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+ibm-watson-machine-learning
+python-dotenv
+numpy<2
+scikit-learn
+httpx

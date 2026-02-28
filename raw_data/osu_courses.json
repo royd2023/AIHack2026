@@ -1,0 +1,580 @@
+[
+  {
+    "course_number": "CSE 2122",
+    "course_title": "Data Structures Using C++",
+    "description": "Introduction to programming in C++ and object-oriented programming; encapsulation using classes, inheritance, etc.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with concepts of object-oriented programming and abstraction mechanisms",
+      "Be competent with the concepts of classes, member functions and variables, constructors, destructors, inheritance, and access mechanisms",
+      "Be competent with the concepts of prototype functions, functions, parameters, return values, overloading, and operators",
+      "Be familiar with control structures, dynamic memory allocation, arrays, and pointers"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_2122"
+  },
+  {
+    "course_number": "CSE 2123",
+    "course_title": "Data Structures Using Java",
+    "description": "Subroutines and modular programming; searching; basic data structures; recursion; introduction to sequential files.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with modular design and structured programming techniques",
+      "Be competent with commonly used data structures",
+      "Be competent with how to design and implement abstract data types",
+      "Be competent with sequential file I/O"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_2123"
+  },
+  {
+    "course_number": "CSE 2124",
+    "course_title": "Intermediate Python Programming",
+    "description": "A second course in Python programming covering topics such as object-oriented programming, recursive programming, searching and sorting, and basic data structures such as linked lists.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with the core principles of object-oriented programming",
+      "Be competent with the creation of classes and instantiating objects in Python",
+      "Be competent with creating object-oriented solutions that use class inheritance to create subclasses",
+      "Be competent with implementing simple data structures to store and manage a collection of values",
+      "Be competent with simple file I/O in Python",
+      "Be familiar with advanced object-oriented techniques, such as abstract classes and interfaces",
+      "Be familiar with simple search and sort algorithms and explain differences in their time complexities",
+      "Be familiar with selecting an algorithm from a range of possible options and implementing it in a particular context",
+      "Be familiar with recursive programming"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_2124"
+  },
+  {
+    "course_number": "CSE 2221",
+    "course_title": "Software I: Software Components",
+    "description": "Intellectual foundations of software engineering; design-by-contract principles; mathematical modeling of software functionality; component-based software from client perspective; layered data representation.",
+    "credit_hours": "4.00",
+    "learning_outcomes": [
+      "Reasons it is important that software be 'correct', i.e., why 'good enough' is not good enough when it comes to software quality",
+      "Reasons for designing software to minimize the impact of change, and why it is difficult to achieve this",
+      "Be competent with using design-by-contract principles to write software that uses existing software components based on their interface contracts",
+      "Be competent with using interface contracts that are described using simple predicate calculus assertions with mathematical integer, string, finite set, and tuple models"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_2221"
+  },
+  {
+    "course_number": "CSE 2231",
+    "course_title": "Software II: Software Development and Design",
+    "description": "Data representation using hashing, search trees, and linked data structures; algorithms for sorting; using trees for language processing; component interface design; best practices in Java.",
+    "credit_hours": "4.00",
+    "learning_outcomes": [
+      "Be competent with using design-by-contract principles and related best practices, including separation of abstract state from concrete representation",
+      "Be competent with using interface contracts, representation invariants, and abstraction functions that are described using simple predicate calculus assertions with mathematical integer, string, finite set, and tuple models",
+      "Be competent with extending existing software components by layering new operations on top of existing operations",
+      "Be competent with layering new software components' data representations on top of existing software components",
+      "Be familiar with simple linked data representations, including why and when it is (and is not) appropriate to use them rather than layered data representations",
+      "Be competent with using simple recursion",
+      "Be competent with using simple techniques to test application software, layered implementations of extensions, and layered or linked data representations, including developing and carrying out simple specification-based test plans",
+      "Be competent with using simple techniques to debug application software, layered implementations of extensions, and typical data representations",
+      "Be familiar with using basic algorithm analysis techniques and notations to analyze and express execution times of operations",
+      "Be competent with writing Java programs using core language features including interfaces, classes, inheritance, and assertions",
+      "Be competent with writing Java programs that use software components similar to those in the Java collections framework",
+      "Be familiar with using many industry-standard best practices for Java design and development",
+      "Be familiar with working as part of a team on a software project with multiple milestones",
+      "Be exposed to using a version control system, e.g., CVS or SVN",
+      "Be exposed to the client-server model of distributed computing"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_2231"
+  },
+  {
+    "course_number": "CSE 2321",
+    "course_title": "Foundations I: Discrete Structures",
+    "description": "Propositional and first-order logic; basic proof techniques; graphs, trees; analysis of algorithms; asymptotic analysis; recurrence relations.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with using propositional logic",
+      "Be familiar with first-order predicate logic",
+      "Be familiar with proving by contradiction, by ordinary induction and by strong induction",
+      "Be familiar with using asymptotic notation",
+      "Be familiar with analyzing running time of simple iterative algorithms",
+      "Be familiar with graph theory",
+      "Be exposed to analyzing running time of recursive algorithms",
+      "Be exposed to sorting and searching",
+      "Be exposed to designing graph algorithms"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_2321"
+  },
+  {
+    "course_number": "CSE 2331",
+    "course_title": "Foundations II: Data Structures and Algorithms",
+    "description": "Design/analysis of algorithms and data structures; divide-and-conquer; sorting and selection, search trees, hashing, graph algorithms, string matching; probabilistic analysis; randomized algorithms; NP-completeness.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be familiar with designing backtracking algorithms",
+      "Be competent with design and analysis of divide-and-conquer algorithms",
+      "Be competent with sorting and selection algorithms",
+      "Be competent with search trees and hashing",
+      "Be competent with graph algorithms",
+      "Be familiar with string matching algorithms",
+      "Be familiar with NP-completeness"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_2331"
+  },
+  {
+    "course_number": "CSE 2421",
+    "course_title": "Systems I: Introduction to Low-Level Programming and Computer Organization",
+    "description": "Introduction to computer architecture at machine and assembly language level; pointers and addressing; C programming at machine level; computer organization.",
+    "credit_hours": "4.00",
+    "learning_outcomes": [
+      "Be competent in programming with dynamic data structures in C, and in using C string and I/O features, bit operations, and function pointers",
+      "Be familiar with overall organization and design of computer systems",
+      "Be competent with representation and manipulation of information in computer systems",
+      "Be familiar with machine encoding of instructions, and be competent with a particular real or hypothetical instruction set"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_2421"
+  },
+  {
+    "course_number": "CSE 2431",
+    "course_title": "Systems II: Introduction to Operating Systems",
+    "description": "Introduction to operating system concepts: process, CPU scheduling, memory management, file system and storage, and multi-threaded programming.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with process concepts and CPU scheduling",
+      "Be competent with memory hierarchy and memory management",
+      "Be familiar with process control blocks, system calls, context switching, interrupts, and exception control flows",
+      "Be familiar with process synchronization, inter-process communication, and threads",
+      "Be familiar with file system and storage management",
+      "Be familiar with principles and practices of security and privacy in computing"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_2431"
+  },
+  {
+    "course_number": "CSE 2501",
+    "course_title": "Social, Ethical, and Professional Issues in Computing",
+    "description": "Social, ethical, and professional issues facing computing professionals; ethical principles; discussion of case studies.",
+    "credit_hours": "1.00",
+    "learning_outcomes": [
+      "Be competent in the identification of social and ethical issues that arise in the development and application of computing technology in modern society",
+      "Be competent in the appreciation for alternate points of view and broader perspectives in the analysis of social and ethical concerns arising in the context of computing technology",
+      "Be familiar with the immediate and long-term implications to society in the creation and use of computing technology",
+      "Be familiar with the local and global impacts and risks of computing solutions on individuals, organizations, and society",
+      "Be exposed to some legal issues that computing professionals may encounter as part of their practice"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_2501"
+  },
+  {
+    "course_number": "CSE 3231",
+    "course_title": "Software Engineering Techniques",
+    "description": "Software engineering issues, techniques, methodologies and technologies; software lifecycle activities: requirements analysis, architecture, design, testing, deployment, maintenance; project management; enterprise software systems; frameworks.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with structured and agile software engineering frameworks; specifically structured and agile software engineering methodologies for requirements identification, analysis, architecture, design, testing, deployment and project management",
+      "Be familiar with the characterization of enterprise software systems",
+      "Be familiar with frameworks for analyzing the business context of enterprise IT systems, the concept of Business-IT alignment and related issues, and Enterprise Architecture",
+      "Be exposed to the trends impacting enterprise systems",
+      "Be exposed to the need for frameworks for software engineering"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_3231"
+  },
+  {
+    "course_number": "CSE 3232",
+    "course_title": "Software Requirements Analysis",
+    "description": "Information systems analysis; object-oriented analysis models and tools; use cases, system modeling using UML; requirements specification development; term project.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Master applying an object-oriented methodology to the analysis of a real-world problem",
+      "Be competent with writing use cases to model functional requirements",
+      "Be competent with using UML use case, class, sequence and collaboration diagrams to model data and behavior requirements",
+      "Be competent with organizational dynamics as it applies to projects",
+      "Be competent with the system lifecycle approach and its phases",
+      "Be familiar with software engineering issues such as correctness, reliability, productivity",
+      "Be familiar with the distinction between analysis and design activities and skills",
+      "Be familiar with working with a team to produce requirements specification document",
+      "Be familiar with the purpose, structure and contents of a requirements specification document"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_3232"
+  },
+  {
+    "course_number": "CSE 3241",
+    "course_title": "Introduction to Database Systems",
+    "description": "Database systems use, logical design, entity-relationship model, normalization, query languages and SQL, relational algebra and calculus, object relational databases, XML, active databases; database design project.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Master using relational databases",
+      "Master writing queries in relational data languages including SQL and relational algebra",
+      "Master using mechanisms for data independence, including data models, languages and views",
+      "Be competent with logical database design",
+      "Be competent with conceptual database design",
+      "Be familiar with object relational database technology",
+      "Be exposed to XML and active databases"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_3241"
+  },
+  {
+    "course_number": "CSE 3244",
+    "course_title": "Data Management in the Cloud",
+    "description": "Systematic organization of data on cloud computing architectures; basic indexing techniques, including B-tree and hash-based indexing; fundamentals of query optimization, including access path selection and cardinality estimation; full and partial replication; data partitioning and distributed task scheduling.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Master using fundamental concepts in indexing and optimization techniques, including B-trees, hash-based indexing and cardinality estimation",
+      "Master using mechanisms of distributed data management, including full and partial replication strategies, data partitioning, fault tolerance models and consistency trade-offs",
+      "Be competent with data warehousing techniques, including on-line analytical processing (OLAP)",
+      "Be competent with distributed algorithms and task scheduling in cloud environments"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_3244"
+  },
+  {
+    "course_number": "CSE 3341",
+    "course_title": "Principles of Programming Languages",
+    "description": "Formal languages and grammars; recursive descent parsing; data types, expressions, control structures, parameter passing; compilers and interpreters; memory management; functional programming principles.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with principles of object-oriented languages",
+      "Be competent with implementing object-oriented languages",
+      "Be familiar with memory management techniques for imperative languages, including object-oriented languages",
+      "Be familiar with using functional programming languages",
+      "Be competent with formal languages and grammars",
+      "Be competent with recursive descent parsing",
+      "Be familiar with data types, expressions, control structures, parameter passing",
+      "Be familiar with compilers and interpreters"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_3341"
+  },
+  {
+    "course_number": "CSE 3461",
+    "course_title": "Computer Networking and Internet Technologies",
+    "description": "Computer networks, communication protocols, Internet TCP/IP and applications, wireless communications and network security.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with the basics of data communications and network architecture",
+      "Be competent with network layer control and protocols",
+      "Be familiar with Internet TCP/IP and applications",
+      "Be familiar with wireless communications and network security"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_3461"
+  },
+  {
+    "course_number": "CSE 3521",
+    "course_title": "Survey of Artificial Intelligence I: Basic Techniques",
+    "description": "Survey of basic concepts and techniques in artificial intelligence, including problem solving, knowledge representation, and machine learning.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Master basic search techniques for problem-solving, including systematic blind search, heuristically-guided search, and optimal search",
+      "Be competent with game tree search methods and the requirements for expert-level game play",
+      "Be familiar with using logic and proof as a basis for knowledge representation and automated reasoning",
+      "Be familiar with multiple knowledge-representation formalisms",
+      "Be exposed to problems in common sense reasoning and language understanding",
+      "Be exposed to machine learning techniques and the kinds of problem they solve"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_3521"
+  },
+  {
+    "course_number": "CSE 3541",
+    "course_title": "Computer Game and Animation Techniques",
+    "description": "Fundamental algorithms and mathematics in production of computer animation and video games, emphasizing control and rendering of animated characters.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with basic interpolation techniques, speed control along a path, and automatic banking into curves along a path",
+      "Be competent with forward and inverse kinematics or articulated linkages",
+      "Be competent with physics-based animation",
+      "Be competent with behavioral animation",
+      "Be competent with the generation and processing of sound in games and animation",
+      "Be competent with the use of AI techniques in games",
+      "Be competent with software architectures for computer games",
+      "Be competent with the concept of a rendering pipeline and graphics state",
+      "Be competent with hierarchical scene graphs and hierarchical animation",
+      "Be familiar with computational issues associated with computer animation",
+      "Be familiar with control devices for computer games and framework support for event notification",
+      "Be exposed to computer animation production technology",
+      "Be exposed to motion capture technology and its use in computer animation",
+      "Be exposed to the history of animation and computer animation"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_3541"
+  },
+  {
+    "course_number": "CSE 3901",
+    "course_title": "Project: Design, Development, and Documentation of Web Applications",
+    "description": "Intensive group project involving design, development, and documentation of a web application; client-side and server-side scripting; communication skills emphasized; builds programming maturity.",
+    "credit_hours": "4.00",
+    "learning_outcomes": [
+      "Be competent with analyzing the intended audience for a written document and writing an audience profile",
+      "Be familiar with making engineering decisions involving tradeoffs",
+      "Be familiar with the use of SQL to access database content",
+      "Be familiar with defining the purpose (persuade, inform, etc.) of a written document and select the appropriate rhetorical devices",
+      "Be familiar with writing several pieces of documentation that have different purposes and to use appropriate organization to tie them together",
+      "Be familiar with group project organization techniques including conducting group meetings, recording minutes, and tracking project progress",
+      "Be familiar with using one structured approach to large software design to carry out a large group project"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_3901"
+  },
+  {
+    "course_number": "CSE 3902",
+    "course_title": "Project: Design, Development, and Documentation of Interactive Systems",
+    "description": "Intensive group project involving design, development, and documentation of an interactive software system, a 2D interactive game; communication skills emphasized; builds programming maturity.",
+    "credit_hours": "4.00",
+    "learning_outcomes": [
+      "Be competent with 2D graphics objects and rendering",
+      "Be competent with event based programming",
+      "Be familiar with elements of game engines such as AI, animation, memory management, and user control",
+      "Be familiar with game content creation and editing tools",
+      "Be competent with writing, organizational, and presentation skills",
+      "Be competent with analyzing the intended audience for a written document and writing an audience profile",
+      "Be familiar with making engineering decisions involving tradeoffs (e.g., space-time tradeoffs in choosing a table implementation)",
+      "Be familiar with defining the purpose of a written document and selecting the appropriate rhetorical devices",
+      "Be familiar with writing several pieces of documentation that have different purposes and using appropriate organization",
+      "Be familiar with group project organization techniques including conducting group meetings, recording minutes, and tracking project progress"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_3902"
+  },
+  {
+    "course_number": "CSE 3903",
+    "course_title": "Project: Design, Development, and Documentation of System Software",
+    "description": "Intensive group project involving design, development, and documentation of system software including an assembler and a linking loader; communication skills emphasized; builds programming maturity.",
+    "credit_hours": "4.00",
+    "learning_outcomes": [
+      "Be competent with using and implementing each component of the assemble-link-load-relocate-execute process",
+      "Be competent with using bit manipulation of integers and ascii characters to be able to emulate a simple computer that handles both integer and character I/O",
+      "Be competent with writing, organizational, and presentation skills",
+      "Be competent with analyzing the intended audience for a written document and writing an audience profile",
+      "Be familiar with making engineering decisions involving tradeoffs",
+      "Be familiar with writing a relocating linking loader",
+      "Be familiar with subroutine linkage at the assembly level and with using different addressing modes",
+      "Be familiar with emulating in software, the fetch-decode-execute cycle of a CPU"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_3903"
+  },
+  {
+    "course_number": "CSE 4471",
+    "course_title": "Information Security",
+    "description": "Introduction to security of digital information; threats and attacks; regulations; risk management; attack detection and response; cryptography; forensics; technical training and certifications.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with understanding external and internal information security threats to an organization",
+      "Be competent with information security awareness and a clear understanding of its importance",
+      "Be competent with how threats to an organization are discovered, analyzed, and dealt with",
+      "Be familiar with a high-level understanding of how information security functions in an organization"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_4471"
+  },
+  {
+    "course_number": "CSE 5241",
+    "course_title": "Introduction to Database Systems",
+    "description": "Database systems use; logical design; entity-relationship model; normalization; query languages and SQL; relational algebra and calculus; object relational databases; XML; active databases; database design project.",
+    "credit_hours": "2.00",
+    "learning_outcomes": [
+      "Master using relational databases",
+      "Master writing queries in relational data languages including SQL and relational algebra",
+      "Master using mechanisms for data independence, including data models, languages and views",
+      "Be competent with logical database design",
+      "Be competent with conceptual database design",
+      "Be familiar with object relational database technology",
+      "Be exposed to XML and active databases"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5241"
+  },
+  {
+    "course_number": "CSE 5243",
+    "course_title": "Introduction to Data Mining",
+    "description": "Knowledge discovery, data mining, data preprocessing, data transformations; clustering, classification, frequent pattern mining, anomaly detection, graph and network analysis; applications.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with anomaly detection algorithms and graph/network analysis algorithms",
+      "Master the knowledge discovery process",
+      "Be competent with simple data preprocessing and data transformation techniques",
+      "Master key classification and clustering algorithms",
+      "Master major frequent pattern mining algorithms"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5243"
+  },
+  {
+    "course_number": "CSE 5245",
+    "course_title": "Introduction to Network Science",
+    "description": "Introduction to Network Science; Global and Local Network Measures; PageRank; Community Discovery Algorithms; Network Models; Understanding the role of network analysis in Web and Social network applications.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Familiarity with network science as a discipline",
+      "Mastery over major macro- and micro- metrics used to describe various networks",
+      "Mastery over key community discovery algorithms",
+      "Familiarity with generative models for networks and various network analysis tools",
+      "Mastery of the role of network science in WWW and social network applications"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5245"
+  },
+  {
+    "course_number": "CSE 5351",
+    "course_title": "Introduction to Cryptography",
+    "description": "Foundations of cryptography; mathematical formulations/proofs of security goals; theory and practical constructions of encryption schemes, MACs, digital signatures; zero-knowledge proof systems; cryptographic protocols.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Master various symmetric-key and public-key encryption schemes",
+      "Be competent with basic cryptographic protocols such as key exchange, identification, and commitment schemes",
+      "Be familiar with cryptographic hash functions, message authentication codes, and digital signatures",
+      "Be familiar with mathematical foundations of cryptography and mathematical formulations of security goals",
+      "Be exposed to zero-knowledge proof systems",
+      "Be exposed to advanced cryptographic protocols such as electronic voting and digital cash",
+      "Be exposed to cryptographic attacks"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5351"
+  },
+  {
+    "course_number": "CSE 5361",
+    "course_title": "Numerical Methods",
+    "description": "Numerical methods for scientific computation: computer arithmetic, rounding errors, machine precision, machine representation, root-finding, interpolation, integration, linear systems, splines, smoothing, curve-fitting, linear programming.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Master using the bisection method, Newton's method, and the secant method in single variable root finding",
+      "Master central difference formula and Richardson extrapolation for numerical differentiation",
+      "Master trapezoid rule, recursive trapezoid formula and Romberg algorithm for numerical integration",
+      "Master Gaussian elimination with scaled partial pivoting",
+      "Be competent with using IEEE single precision floating point arithmetic standard",
+      "Be competent with loss of significant digits in numerical calculations",
+      "Be competent with polynomial interpolation and Lagrange and Newton form",
+      "Be competent with numerical computation of second derivative",
+      "Be familiar with Simpson's and adaptive Simpson's algorithm",
+      "Be exposed to calculating errors in polynomial interpolation",
+      "Be exposed to Gaussian quadrature formulas",
+      "Be exposed to solving linear systems using matrix factorization",
+      "Be exposed to iterative solutions of linear systems",
+      "Be exposed to method of least squares",
+      "Be exposed to Monte Carlo simulation"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5361"
+  },
+  {
+    "course_number": "CSE 5431",
+    "course_title": "Systems II: Introduction to Operating Systems",
+    "description": "Introduction to operating system concepts: process, CPU scheduling, memory management, file system and storage, and multi-threaded programming.",
+    "credit_hours": "2.00",
+    "learning_outcomes": [
+      "Be competent with process concepts and CPU scheduling",
+      "Be competent with memory hierarchy and memory management",
+      "Be familiar with process control blocks, system calls, context switching, interrupts, and exception control flows",
+      "Be familiar with process synchronization, inter-process communication, and threads",
+      "Be familiar with multi-threaded programming",
+      "Be familiar with file systems and disk scheduling algorithms",
+      "Be familiar with principles and practices of security and privacy in computing"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5431"
+  },
+  {
+    "course_number": "CSE 5432",
+    "course_title": "Mobile Handset Systems and Networking",
+    "description": "Mobile handset architecture: processors, memory, I/O devices, sensors, virtual machine and power management; different ranges of wireless communication technologies; TCP/IP over wireless; mobile social networking.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with mobile handset architecture processors, memory, I/O devices and sensors",
+      "Be familiar with mobile handset virtual machine and power management",
+      "Be competent with different ranges of mobile handset wireless communication technologies and TCP/IP over wireless",
+      "Be familiar with mobile social networking"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5432"
+  },
+  {
+    "course_number": "CSE 5522",
+    "course_title": "Survey of Artificial Intelligence II: Advanced Techniques",
+    "description": "Survey of advanced concepts, techniques, and applications of artificial intelligence, including knowledge representation, learning, natural language understanding, and vision.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Master advanced AI concepts, theories, and terminology",
+      "Master computational techniques in typical AI subareas",
+      "Master knowledge representation and reasoning methods in AI",
+      "Be exposed to current research topics in AI"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5522"
+  },
+  {
+    "course_number": "CSE 5523",
+    "course_title": "Machine Learning and Statistical Pattern Recognition",
+    "description": "Introduction to basic concepts of machine learning and statistical pattern recognition; techniques for classification, clustering and data representation and their theoretical analysis.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Master basic techniques of machine learning, including linear methods, prototype-based methods, and kernel methods",
+      "Master the statistical framework of machine learning and basic concepts, such as Bayes optimal classifier",
+      "Be competent with theoretical analysis of complexity and other properties of statistical learning techniques"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5523"
+  },
+  {
+    "course_number": "CSE 5524",
+    "course_title": "Computer Vision for Human-Computer Interaction",
+    "description": "Computer vision algorithms for use in human-computer interactive systems; image formation, image features, segmentation, shape analysis, object tracking, motion calculation, and applications.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Master fundamental computer vision algorithms",
+      "Be competent with computer vision application design and evaluation",
+      "Be familiar with Matlab programming environment",
+      "Be exposed to original research and applications in computer vision"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5524"
+  },
+  {
+    "course_number": "CSE 5525",
+    "course_title": "Foundations of Speech and Language Processing",
+    "description": "Fundamentals of natural language processing, automatic speech recognition and speech synthesis; lab projects concentrating on building systems to process written and/or spoken language.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Master the fundamentals of symbolic methods in language processing tasks, such as natural language parsing",
+      "Be competent with fundamental concepts for natural language processing and automatic speech recognition, such as hidden Markov models",
+      "Be competent with fundamental concepts in text-to-speech synthesis, such as concatenative synthesis and text analysis",
+      "Be familiar with a finite state framework integrating all of speech processing",
+      "Be familiar with a toolkit for text classification, part-of-speech tagging and sentiment mining",
+      "Be familiar with methods of constructing speech recognition and synthesis systems",
+      "Be exposed to current speech and language processing research"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5525"
+  },
+  {
+    "course_number": "CSE 5526",
+    "course_title": "Introduction to Neural Networks",
+    "description": "Survey of fundamental methods and techniques of neural networks; single- and multi-layer perceptrons; radial-basis function networks; support vector machines; recurrent networks; supervised and unsupervised learning.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Master basic neural network methods",
+      "Be competent with solving problems using neural network techniques",
+      "Be familiar with enough background about neural networks to take other specialty courses on neural networks"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5526"
+  },
+  {
+    "course_number": "CSE 5539",
+    "course_title": "Intermediate Studies in Artificial Intelligence",
+    "description": "Intermediate-level topics in artificial intelligence.",
+    "credit_hours": "2.00",
+    "learning_outcomes": [],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5539"
+  },
+  {
+    "course_number": "CSE 5541",
+    "course_title": "Computer Game and Animation Techniques",
+    "description": "Fundamental algorithms and mathematics in the production of computer animation and video games, emphasizing the control and rendering of animated characters.",
+    "credit_hours": "2.00",
+    "learning_outcomes": [
+      "Be competent with basic interpolation techniques, speed control along a path, and automatic banking into curves along a path",
+      "Be competent with forward and inverse kinematics or articulated linkages",
+      "Be competent with physics-based animation",
+      "Be competent with behavioral animation",
+      "Be competent with the generation and processing of sound in games and animation",
+      "Be competent with the use of AI techniques in games",
+      "Be competent with software architectures for computer game",
+      "Be competent with the concept of a rendering pipeline and graphics state",
+      "Be competent with hierarchical scene graphs and hierarchical animation",
+      "Be familiar with computational issues associated with computer animation",
+      "Be familiar with control devices for computer games and framework support for event notification",
+      "Be exposed to computer animation production technology",
+      "Be exposed to motion capture technology and its use in computer animation",
+      "Be exposed to the history of animation and computer animation"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5541"
+  },
+  {
+    "course_number": "CSE 5544",
+    "course_title": "Introduction to Data Visualization",
+    "description": "Principles and methods for visualizing data from measurements and calculations in physical and life sciences, and transactional and social disciplines; information visualization; scientific visualization.",
+    "credit_hours": "3.00",
+    "learning_outcomes": [
+      "Be competent with design principles of creating viable visualizations",
+      "Be competent with visualization algorithms and data structures",
+      "Be competent with creation of interactive visualizations",
+      "Be competent with the collection and processing of diverse collections of data",
+      "Be competent with including perceptual considerations into visualization systems",
+      "Be familiar with practical applications of visualization",
+      "Be familiar with visualization needs of domains from science, medicine, and commerce",
+      "Be familiar with the critiques of visualization systems"
+    ],
+    "syllabi_url": "https://syllabi.engineering.osu.edu/syllabi/cse_5544"
+  }
+]
