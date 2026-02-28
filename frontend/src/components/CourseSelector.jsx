@@ -71,15 +71,14 @@ export default function CourseSelector({ courses, selected, onChange }) {
               return (
                 <button
                   key={course.id}
+                  type="button"
                   onClick={() => toggle(course.id)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-ibm-gray-80 transition-colors border-b border-ibm-gray-80 last:border-0 ${
-                    isSel ? 'bg-ibm-blue/5' : ''
-                  }`}
+                  className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-ibm-gray-80 transition-colors border-b border-ibm-gray-80 last:border-0 ${isSel ? 'bg-ibm-blue/5' : ''
+                    }`}
                 >
                   {/* Checkbox */}
-                  <div className={`w-4 h-4 rounded border flex-shrink-0 flex items-center justify-center transition-colors ${
-                    isSel ? 'bg-ibm-blue border-ibm-blue' : 'border-ibm-gray-50'
-                  }`}>
+                  <div className={`w-4 h-4 rounded border flex-shrink-0 flex items-center justify-center transition-colors ${isSel ? 'bg-ibm-blue border-ibm-blue' : 'border-ibm-gray-50'
+                    }`}>
                     {isSel && (
                       <svg className="w-3 h-3 text-white" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -111,6 +110,7 @@ export default function CourseSelector({ courses, selected, onChange }) {
           {selectedCourses.map(course => (
             <button
               key={course.id}
+              type="button"
               onClick={() => toggle(course.id)}
               className="inline-flex items-center gap-1.5 bg-ibm-blue/10 border border-ibm-blue/30 text-ibm-blue rounded-full px-3 py-1 text-xs font-medium hover:bg-ibm-red/10 hover:border-ibm-red/30 hover:text-ibm-red transition-colors group"
             >

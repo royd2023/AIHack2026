@@ -1,0 +1,1052 @@
+{
+  "metadata": {
+    "courses_analyzed": 37,
+    "source": "syllabi.engineering.osu.edu \u2014 official OSU syllabi",
+    "model_used": "ibm/granite-3-3-8b-instruct",
+    "embedding_model": "ibm/granite-embedding-278m-multilingual"
+  },
+  "courses": {
+    "CSE2122": {
+      "number": "CSE 2122",
+      "title": "Data Structures Using C++",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE2123": {
+      "number": "CSE 2123",
+      "title": "Data Structures Using Java",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE2124": {
+      "number": "CSE 2124",
+      "title": "Intermediate Python Programming",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE2221": {
+      "number": "CSE 2221",
+      "title": "Software I: Software Components",
+      "credits": "4.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE2231": {
+      "number": "CSE 2231",
+      "title": "Software II: Software Development and Design",
+      "credits": "4.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE2321": {
+      "number": "CSE 2321",
+      "title": "Foundations I: Discrete Structures",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [
+        {
+          "name": "propositional logic",
+          "depth": "introductory",
+          "category": "logic"
+        },
+        {
+          "name": "first-order predicate logic",
+          "depth": "introductory",
+          "category": "logic"
+        },
+        {
+          "name": "proof techniques",
+          "depth": "introductory",
+          "category": "logic"
+        },
+        {
+          "name": "asymptotic notation",
+          "depth": "introductory",
+          "category": "analysis"
+        },
+        {
+          "name": "analyzing running time of simple iterative algorithms",
+          "depth": "introductory",
+          "category": "analysis"
+        },
+        {
+          "name": "graph theory",
+          "depth": "introductory",
+          "category": "theory"
+        },
+        {
+          "name": "analyzing running time of recursive algorithms",
+          "depth": "introductory",
+          "category": "analysis"
+        },
+        {
+          "name": "sorting and searching",
+          "depth": "introductory",
+          "category": "algorithms"
+        },
+        {
+          "name": "designing graph algorithms",
+          "depth": "introductory",
+          "category": "algorithms"
+        }
+      ],
+      "key_topics": [
+        "propositional logic",
+        "first-order predicate logic",
+        "proof techniques",
+        "asymptotic notation",
+        "analyzing running time of simple iterative algorithms",
+        "graph theory",
+        "analyzing running time of recursive algorithms",
+        "sorting and searching",
+        "designing graph algorithms"
+      ],
+      "career_relevance": {
+        "software_engineer": 0.0,
+        "data_scientist": 0.5,
+        "product_manager": 0.1
+      },
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE2331": {
+      "number": "CSE 2331",
+      "title": "Foundations II: Data Structures and Algorithms",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE2421": {
+      "number": "CSE 2421",
+      "title": "Systems I: Introduction to Low-Level Programming and Computer Organization",
+      "credits": "4.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE2431": {
+      "number": "CSE 2431",
+      "title": "Systems II: Introduction to Operating Systems",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE2501": {
+      "number": "CSE 2501",
+      "title": "Social, Ethical, and Professional Issues in Computing",
+      "credits": "1.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE3231": {
+      "number": "CSE 3231",
+      "title": "Software Engineering Techniques",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE3232": {
+      "number": "CSE 3232",
+      "title": "Software Requirements Analysis",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE3241": {
+      "number": "CSE 3241",
+      "title": "Introduction to Database Systems",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE3244": {
+      "number": "CSE 3244",
+      "title": "Data Management in the Cloud",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE3341": {
+      "number": "CSE 3341",
+      "title": "Principles of Programming Languages",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE3461": {
+      "number": "CSE 3461",
+      "title": "Computer Networking and Internet Technologies",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE3521": {
+      "number": "CSE 3521",
+      "title": "Survey of Artificial Intelligence I: Basic Techniques",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE3541": {
+      "number": "CSE 3541",
+      "title": "Computer Game and Animation Techniques",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [
+        {
+          "name": "forward and inverse kinematics",
+          "depth": "intermediate",
+          "category": "methodology"
+        },
+        {
+          "name": "physics-based animation",
+          "depth": "intermediate",
+          "category": "methodology"
+        },
+        {
+          "name": "behavioral animation",
+          "depth": "intermediate",
+          "category": "methodology"
+        },
+        {
+          "name": "sound generation and processing",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "ai techniques in games",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "software architectures for computer games",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "rendering pipeline and graphics state",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "hierarchical scene graphs and hierarchical animation",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "computational issues in computer animation",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "control devices and event notification",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "computer animation production technology",
+          "depth": "familiarization",
+          "category": "soft_skill"
+        },
+        {
+          "name": "motion capture technology",
+          "depth": "familiarization",
+          "category": "soft_skill"
+        },
+        {
+          "name": "history of animation and computer animation",
+          "depth": "familiarization",
+          "category": "soft_skill"
+        }
+      ],
+      "key_topics": [
+        "basic interpolation techniques",
+        "speed control along a path",
+        "automatic banking into curves along a path",
+        "articulated linkages",
+        "physics-based animation",
+        "behavioral animation",
+        "generation and processing of sound in games and animation",
+        "use of ai techniques in games",
+        "software architectures for computer games",
+        "rendering pipeline and graphics state",
+        "hierarchical scene graphs and hierarchical animation",
+        "computational issues associated with computer animation",
+        "control devices for computer games",
+        "event notification",
+        "computer animation production technology",
+        "motion capture technology",
+        "history of animation and computer animation"
+      ],
+      "career_relevance": {
+        "software_engineer": 0.3,
+        "data_scientist": 0.1,
+        "product_manager": 0.2
+      },
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE3901": {
+      "number": "CSE 3901",
+      "title": "Project: Design, Development, and Documentation of Web Applications",
+      "credits": "4.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE3902": {
+      "number": "CSE 3902",
+      "title": "Project: Design, Development, and Documentation of Interactive Systems",
+      "credits": "4.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [
+        {
+          "name": "2d graphics objects and rendering",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "event based programming",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "game engines",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "ai",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "animation",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "memory management",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "user control",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "game content creation and editing tools",
+          "depth": "introductory",
+          "category": "tool"
+        },
+        {
+          "name": "writing",
+          "depth": "intermediate",
+          "category": "soft_skill"
+        },
+        {
+          "name": "organizational skills",
+          "depth": "intermediate",
+          "category": "soft_skill"
+        },
+        {
+          "name": "presentation skills",
+          "depth": "intermediate",
+          "category": "soft_skill"
+        },
+        {
+          "name": "audience analysis",
+          "depth": "intermediate",
+          "category": "soft_skill"
+        },
+        {
+          "name": "engineering decision making",
+          "depth": "intermediate",
+          "category": "soft_skill"
+        },
+        {
+          "name": "document analysis",
+          "depth": "intermediate",
+          "category": "soft_skill"
+        },
+        {
+          "name": "documentation organization",
+          "depth": "intermediate",
+          "category": "soft_skill"
+        },
+        {
+          "name": "group project organization",
+          "depth": "intermediate",
+          "category": "soft_skill"
+        },
+        {
+          "name": "group meetings",
+          "depth": "intermediate",
+          "category": "soft_skill"
+        },
+        {
+          "name": "minute recording",
+          "depth": "intermediate",
+          "category": "soft_skill"
+        },
+        {
+          "name": "project progress tracking",
+          "depth": "intermediate",
+          "category": "soft_skill"
+        }
+      ],
+      "key_topics": [
+        "interactive software systems",
+        "2d graphics",
+        "game development",
+        "game engines",
+        "ai",
+        "animation",
+        "memory management",
+        "user control",
+        "game content creation",
+        "written communication",
+        "organizational skills",
+        "presentation skills",
+        "audience analysis",
+        "engineering decision making",
+        "document analysis",
+        "documentation organization",
+        "group project organization",
+        "group meetings",
+        "minute recording",
+        "project progress tracking"
+      ],
+      "career_relevance": {
+        "software_engineer": 0.8,
+        "data_scientist": 0.2,
+        "product_manager": 0.3
+      },
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE3903": {
+      "number": "CSE 3903",
+      "title": "Project: Design, Development, and Documentation of System Software",
+      "credits": "4.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE4471": {
+      "number": "CSE 4471",
+      "title": "Information Security",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5241": {
+      "number": "CSE 5241",
+      "title": "Introduction to Database Systems",
+      "credits": "2.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5243": {
+      "number": "CSE 5243",
+      "title": "Introduction to Data Mining",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5245": {
+      "number": "CSE 5245",
+      "title": "Introduction to Network Science",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5351": {
+      "number": "CSE 5351",
+      "title": "Introduction to Cryptography",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5361": {
+      "number": "CSE 5361",
+      "title": "Numerical Methods",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [
+        {
+          "name": "computer arithmetic",
+          "depth": "introductory",
+          "category": "methodology"
+        },
+        {
+          "name": "rounding errors",
+          "depth": "introductory",
+          "category": "methodology"
+        },
+        {
+          "name": "machine precision",
+          "depth": "introductory",
+          "category": "methodology"
+        },
+        {
+          "name": "machine representation",
+          "depth": "introductory",
+          "category": "methodology"
+        },
+        {
+          "name": "root-finding",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "interpolation",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "integration",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "linear systems",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "splines",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "smoothing",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "curve-fitting",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "gaussian elimination",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "scaled partial pivoting",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "ieee single precision floating point arithmetic standard",
+          "depth": "introductory",
+          "category": "tool"
+        },
+        {
+          "name": "loss of significant digits in numerical calculations",
+          "depth": "introductory",
+          "category": "methodology"
+        },
+        {
+          "name": "polynomial interpolation",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "lagrange form",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "newton form",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "numerical computation of second derivative",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "simpson's algorithm",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "adaptive simpson's algorithm",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "calculating errors in polynomial interpolation",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "gaussian quadrature formulas",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "matrix factorization",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "iterative solutions of linear systems",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "method of least squares",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "monte carlo simulation",
+          "depth": "introductory",
+          "category": "methodology"
+        }
+      ],
+      "key_topics": [
+        "computer arithmetic",
+        "rounding errors",
+        "machine precision",
+        "machine representation",
+        "root-finding",
+        "interpolation",
+        "integration",
+        "linear systems",
+        "splines",
+        "smoothing",
+        "curve-fitting",
+        "gaussian elimination",
+        "scaled partial pivoting",
+        "ieee single precision floating point arithmetic standard",
+        "loss of significant digits in numerical calculations",
+        "polynomial interpolation",
+        "lagrange form",
+        "newton form",
+        "numerical computation of second derivative",
+        "simpson's algorithm",
+        "adaptive simpson's algorithm",
+        "calculating errors in polynomial interpolation",
+        "gaussian quadrature formulas",
+        "matrix factorization",
+        "iterative solutions of linear systems",
+        "method of least squares",
+        "monte carlo simulation"
+      ],
+      "career_relevance": {
+        "software_engineer": 0.2,
+        "data_scientist": 0.7,
+        "product_manager": 0.1
+      },
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5431": {
+      "number": "CSE 5431",
+      "title": "Systems II: Introduction to Operating Systems",
+      "credits": "2.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5432": {
+      "number": "CSE 5432",
+      "title": "Mobile Handset Systems and Networking",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5522": {
+      "number": "CSE 5522",
+      "title": "Survey of Artificial Intelligence II: Advanced Techniques",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5523": {
+      "number": "CSE 5523",
+      "title": "Machine Learning and Statistical Pattern Recognition",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5524": {
+      "number": "CSE 5524",
+      "title": "Computer Vision for Human-Computer Interaction",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5525": {
+      "number": "CSE 5525",
+      "title": "Foundations of Speech and Language Processing",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5526": {
+      "number": "CSE 5526",
+      "title": "Introduction to Neural Networks",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5539": {
+      "number": "CSE 5539",
+      "title": "Intermediate Studies in Artificial Intelligence",
+      "credits": "2.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [],
+      "key_topics": [],
+      "career_relevance": {},
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5541": {
+      "number": "CSE 5541",
+      "title": "Computer Game and Animation Techniques",
+      "credits": "2.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [
+        {
+          "name": "interpolation techniques",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "forward and inverse kinematics",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "physics-based animation",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "behavioral animation",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "sound generation and processing",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "ai techniques in games",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "software architectures for computer game",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "rendering pipeline and graphics state",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "hierarchical scene graphs and hierarchical animation",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "computational issues in computer animation",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "control devices for computer games",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "event notification framework",
+          "depth": "introductory",
+          "category": "technical"
+        },
+        {
+          "name": "computer animation production technology",
+          "depth": "exposure",
+          "category": "industry_practice"
+        },
+        {
+          "name": "motion capture technology",
+          "depth": "exposure",
+          "category": "industry_practice"
+        },
+        {
+          "name": "written communication",
+          "depth": "introductory",
+          "category": "soft_skill"
+        },
+        {
+          "name": "collaboration",
+          "depth": "introductory",
+          "category": "soft_skill"
+        },
+        {
+          "name": "verbal communication",
+          "depth": "introductory",
+          "category": "soft_skill"
+        }
+      ],
+      "key_topics": [
+        "interpolation techniques",
+        "kinematics (forward and inverse)",
+        "physics-based animation",
+        "behavioral animation",
+        "sound generation and processing",
+        "ai techniques in games",
+        "software architectures for computer game",
+        "rendering pipeline and graphics state",
+        "hierarchical scene graphs and hierarchical animation",
+        "computational issues in computer animation",
+        "control devices for computer games",
+        "event notification framework",
+        "computer animation production technology",
+        "motion capture technology"
+      ],
+      "career_relevance": {
+        "software_engineer": 0.3,
+        "data_scientist": 0.1,
+        "product_manager": 0.2
+      },
+      "review_insights": "",
+      "embedding": []
+    },
+    "CSE5544": {
+      "number": "CSE 5544",
+      "title": "Introduction to Data Visualization",
+      "credits": "3.00",
+      "prerequisites": [],
+      "corequisites": [],
+      "skills_taught": [
+        {
+          "name": "design principles",
+          "depth": "introductory",
+          "category": "soft_skill"
+        },
+        {
+          "name": "visualization algorithms",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "interactive visualization creation",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "data collection and processing",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "perceptual considerations",
+          "depth": "intermediate",
+          "category": "technical"
+        },
+        {
+          "name": "practical applications of visualization",
+          "depth": "introductory",
+          "category": "soft_skill"
+        },
+        {
+          "name": "domain visualization needs",
+          "depth": "introductory",
+          "category": "soft_skill"
+        },
+        {
+          "name": "critique of visualization systems",
+          "depth": "introductory",
+          "category": "soft_skill"
+        }
+      ],
+      "key_topics": [
+        "design principles",
+        "visualization algorithms",
+        "data structures",
+        "interactive visualizations",
+        "data collection",
+        "perceptual considerations",
+        "practical applications",
+        "domain visualization needs",
+        "criticism of visualization systems"
+      ],
+      "career_relevance": {
+        "software_engineer": 0.0,
+        "data_scientist": 0.3,
+        "product_manager": 0.2
+      },
+      "review_insights": "",
+      "embedding": []
+    }
+  },
+  "course_similarity_pairs": []
+}

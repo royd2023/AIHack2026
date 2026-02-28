@@ -19,6 +19,30 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 
 DEPTH_SCORES = {"introductory": 0.33, "intermediate": 0.66, "advanced": 1.0}
 
+# Mapping from frontend career IDs to possible skill_index keys
+CAREER_KEY_MAP = {
+    "software_engineer": ["software_engineer", "Software Engineering", "software_engineering", "Software Engineer"],
+    "data_scientist": ["data_scientist", "Data Science", "data_science", "Data Scientist"],
+    "product_manager": ["product_manager", "Product Management", "product_management", "Product Manager"],
+}
+
+
+def _resolve_career_key(career_path: str, career_paths_dict: dict) -> str:
+    """Find the matching key in the skill index for a given career path ID."""
+    # Direct match first
+    if career_path in career_paths_dict:
+        return career_path
+    # Try mapped variants
+    for variant in CAREER_KEY_MAP.get(career_path, []):
+        if variant in career_paths_dict:
+            return variant
+    # Fuzzy fallback: case-insensitive substring match
+    career_lower = career_path.lower().replace("_", " ")
+    for key in career_paths_dict:
+        if career_lower in key.lower() or key.lower().replace(" ", "_") == career_path:
+            return key
+    return career_path
+
 PLAN_GENERATION_PROMPT = """You are an expert academic advisor for Ohio State University's CSE program. You have deep knowledge of the curriculum and job market.
 
 STUDENT STATE:
@@ -92,15 +116,169 @@ def normalize_course_id(course_str: str) -> str:
     return course_str.replace(" ", "").upper()
 
 
-def compute_student_skills(completed_course_ids: list[str], fingerprints: dict) -> dict[str, float]:
+def _derive_skills_from_metadata(course_id: str, raw_courses: list) -> list[dict]:
+    """
+    Fallback: derive skills from raw course metadata (title, description,
+    learning outcomes) when Watson fingerprinting returned no skills.
+    Uses keyword matching against known skill vocabulary.
+    """
+    SKILL_KEYWORDS = {
+        # Programming
+        "python": {"name": "python", "depth": "intermediate", "category": "technical"},
+        "java": {"name": "java", "depth": "intermediate", "category": "technical"},
+        "c++": {"name": "c++", "depth": "intermediate", "category": "technical"},
+        "c programming": {"name": "c", "depth": "intermediate", "category": "technical"},
+        "javascript": {"name": "javascript", "depth": "intermediate", "category": "technical"},
+        "programming": {"name": "programming", "depth": "intermediate", "category": "technical"},
+        "object-oriented": {"name": "object-oriented programming", "depth": "intermediate", "category": "technical"},
+        "software component": {"name": "software engineering", "depth": "intermediate", "category": "methodology"},
+        "software engineering": {"name": "software engineering", "depth": "intermediate", "category": "methodology"},
+        "software design": {"name": "software design", "depth": "intermediate", "category": "methodology"},
+        "design-by-contract": {"name": "software engineering", "depth": "advanced", "category": "methodology"},
+        # Data structures & algorithms
+        "data structure": {"name": "data structures", "depth": "intermediate", "category": "technical"},
+        "algorithm": {"name": "algorithms", "depth": "intermediate", "category": "technical"},
+        "sorting": {"name": "algorithms", "depth": "intermediate", "category": "technical"},
+        "searching": {"name": "algorithms", "depth": "introductory", "category": "technical"},
+        "recursion": {"name": "algorithms", "depth": "intermediate", "category": "technical"},
+        "hashing": {"name": "data structures", "depth": "intermediate", "category": "technical"},
+        "linked": {"name": "data structures", "depth": "intermediate", "category": "technical"},
+        "tree": {"name": "data structures", "depth": "intermediate", "category": "technical"},
+        "graph": {"name": "graph algorithms", "depth": "intermediate", "category": "technical"},
+        "np-complete": {"name": "algorithms", "depth": "advanced", "category": "technical"},
+        # Math/foundations
+        "discrete": {"name": "discrete mathematics", "depth": "intermediate", "category": "technical"},
+        "logic": {"name": "discrete mathematics", "depth": "introductory", "category": "technical"},
+        "proof": {"name": "discrete mathematics", "depth": "intermediate", "category": "technical"},
+        "induction": {"name": "discrete mathematics", "depth": "intermediate", "category": "technical"},
+        "asymptotic": {"name": "algorithms", "depth": "intermediate", "category": "technical"},
+        "probability": {"name": "probability", "depth": "intermediate", "category": "technical"},
+        "statistics": {"name": "statistics", "depth": "intermediate", "category": "technical"},
+        "linear algebra": {"name": "linear algebra", "depth": "intermediate", "category": "technical"},
+        "numerical": {"name": "numerical methods", "depth": "intermediate", "category": "technical"},
+        # Systems
+        "operating system": {"name": "operating systems", "depth": "intermediate", "category": "technical"},
+        "process": {"name": "operating systems", "depth": "introductory", "category": "technical"},
+        "memory management": {"name": "operating systems", "depth": "intermediate", "category": "technical"},
+        "cpu scheduling": {"name": "operating systems", "depth": "intermediate", "category": "technical"},
+        "assembly": {"name": "computer architecture", "depth": "intermediate", "category": "technical"},
+        "computer organization": {"name": "computer architecture", "depth": "intermediate", "category": "technical"},
+        "machine level": {"name": "computer architecture", "depth": "intermediate", "category": "technical"},
+        "pointer": {"name": "c", "depth": "intermediate", "category": "technical"},
+        "low-level": {"name": "computer architecture", "depth": "intermediate", "category": "technical"},
+        # Databases
+        "database": {"name": "sql", "depth": "intermediate", "category": "tool"},
+        "sql": {"name": "sql", "depth": "intermediate", "category": "tool"},
+        "relational": {"name": "sql", "depth": "intermediate", "category": "tool"},
+        "normalization": {"name": "database design", "depth": "intermediate", "category": "technical"},
+        "query": {"name": "sql", "depth": "intermediate", "category": "tool"},
+        "data warehouse": {"name": "data warehousing", "depth": "intermediate", "category": "technical"},
+        "cloud": {"name": "cloud computing", "depth": "intermediate", "category": "technical"},
+        # Networking
+        "network": {"name": "networking", "depth": "intermediate", "category": "technical"},
+        "tcp/ip": {"name": "networking", "depth": "intermediate", "category": "technical"},
+        "protocol": {"name": "networking", "depth": "intermediate", "category": "technical"},
+        "wireless": {"name": "networking", "depth": "introductory", "category": "technical"},
+        # AI/ML
+        "artificial intelligence": {"name": "machine learning", "depth": "introductory", "category": "technical"},
+        "machine learning": {"name": "machine learning", "depth": "intermediate", "category": "technical"},
+        "neural network": {"name": "deep learning", "depth": "intermediate", "category": "technical"},
+        "deep learning": {"name": "deep learning", "depth": "intermediate", "category": "technical"},
+        "natural language": {"name": "nlp", "depth": "intermediate", "category": "technical"},
+        "computer vision": {"name": "computer vision", "depth": "intermediate", "category": "technical"},
+        "data mining": {"name": "data mining", "depth": "intermediate", "category": "technical"},
+        "pattern recognition": {"name": "machine learning", "depth": "intermediate", "category": "technical"},
+        "classification": {"name": "machine learning", "depth": "intermediate", "category": "technical"},
+        "clustering": {"name": "machine learning", "depth": "intermediate", "category": "technical"},
+        # Web/Software project
+        "web application": {"name": "web development", "depth": "intermediate", "category": "technical"},
+        "client-side": {"name": "web development", "depth": "introductory", "category": "technical"},
+        "server-side": {"name": "web development", "depth": "introductory", "category": "technical"},
+        "interactive": {"name": "software engineering", "depth": "intermediate", "category": "technical"},
+        # Security
+        "security": {"name": "cybersecurity", "depth": "intermediate", "category": "technical"},
+        "cryptography": {"name": "cryptography", "depth": "intermediate", "category": "technical"},
+        "encryption": {"name": "cryptography", "depth": "intermediate", "category": "technical"},
+        # Soft skills
+        "team": {"name": "teamwork", "depth": "introductory", "category": "soft_skill"},
+        "group project": {"name": "collaboration", "depth": "intermediate", "category": "soft_skill"},
+        "communication": {"name": "communication", "depth": "introductory", "category": "soft_skill"},
+        "presentation": {"name": "communication", "depth": "introductory", "category": "soft_skill"},
+        "documentation": {"name": "technical writing", "depth": "introductory", "category": "soft_skill"},
+        "writing": {"name": "technical writing", "depth": "introductory", "category": "soft_skill"},
+        "ethics": {"name": "ethics", "depth": "introductory", "category": "soft_skill"},
+        # SE practices
+        "testing": {"name": "testing", "depth": "intermediate", "category": "methodology"},
+        "debugging": {"name": "debugging", "depth": "intermediate", "category": "methodology"},
+        "version control": {"name": "git", "depth": "introductory", "category": "tool"},
+        "agile": {"name": "agile", "depth": "introductory", "category": "methodology"},
+        "requirements": {"name": "requirements analysis", "depth": "intermediate", "category": "methodology"},
+        "uml": {"name": "software design", "depth": "intermediate", "category": "methodology"},
+        # Visualization
+        "visualization": {"name": "data visualization", "depth": "intermediate", "category": "technical"},
+        # Languages/PLs
+        "compiler": {"name": "compilers", "depth": "intermediate", "category": "technical"},
+        "interpreter": {"name": "compilers", "depth": "intermediate", "category": "technical"},
+        "parsing": {"name": "compilers", "depth": "intermediate", "category": "technical"},
+        "functional programming": {"name": "functional programming", "depth": "intermediate", "category": "technical"},
+        # Game dev
+        "game": {"name": "game development", "depth": "intermediate", "category": "technical"},
+        "animation": {"name": "computer graphics", "depth": "intermediate", "category": "technical"},
+        "rendering": {"name": "computer graphics", "depth": "intermediate", "category": "technical"},
+    }
+
+    # Find the raw course by matching course_number
+    course_number_with_space = course_id[:3] + " " + course_id[3:]  # CSE2221 -> CSE 2221
+    raw_course = None
+    for c in raw_courses:
+        cn = c.get("course_number", c.get("number", ""))
+        if cn.replace(" ", "").upper() == course_id.upper():
+            raw_course = c
+            break
+
+    if not raw_course:
+        return []
+
+    # Build a searchable text blob
+    text_parts = [
+        raw_course.get("course_title", raw_course.get("title", "")),
+        raw_course.get("description", ""),
+    ]
+    los = raw_course.get("learning_outcomes", [])
+    if isinstance(los, list):
+        text_parts.extend(los)
+    elif isinstance(los, str):
+        text_parts.append(los)
+
+    text_blob = " ".join(text_parts).lower()
+
+    # Extract matching skills
+    found: dict[str, dict] = {}
+    for keyword, skill_info in SKILL_KEYWORDS.items():
+        if keyword in text_blob:
+            name = skill_info["name"]
+            if name not in found or DEPTH_SCORES.get(skill_info["depth"], 0) > DEPTH_SCORES.get(found[name].get("depth", "introductory"), 0):
+                found[name] = dict(skill_info)
+
+    return list(found.values())
+
+
+def compute_student_skills(completed_course_ids: list[str], fingerprints: dict, raw_courses: list | None = None) -> dict[str, float]:
     """
     Union all skills from completed courses.
+    Falls back to keyword-based skill derivation when Watson fingerprints are empty.
     Returns: {skill_name: proficiency_score (0-1)}
     """
     student_skills: dict[str, float] = {}
     for cid in completed_course_ids:
         fp = fingerprints.get(cid, {})
-        for skill in fp.get("skills_taught", []):
+        skills = fp.get("skills_taught", [])
+
+        # If Watson fingerprinting returned no skills, derive from metadata
+        if not skills and raw_courses:
+            skills = _derive_skills_from_metadata(cid, raw_courses)
+
+        for skill in skills:
             name = skill.get("name", "")
             depth = DEPTH_SCORES.get(skill.get("depth", "introductory"), 0.33)
             student_skills[name] = max(student_skills.get(name, 0), depth)
@@ -116,7 +294,9 @@ def compute_skill_gaps(
     For each skill demanded by the target career, compute gap score.
     gap_score = demand_score * (1 - student_proficiency)
     """
-    career_data = skill_index.get("career_paths", {}).get(career_path, {})
+    career_paths_dict = skill_index.get("career_paths", {})
+    resolved_key = _resolve_career_key(career_path, career_paths_dict)
+    career_data = career_paths_dict.get(resolved_key, {})
     career_skills = career_data.get("skills", [])
 
     gaps = []
@@ -199,12 +379,19 @@ def analyze_gap(
     metadata = fp_data.get("metadata", {})
     si_metadata = skill_index.get("metadata", {})
 
+    # Load raw course data for fallback skill derivation
+    raw_courses_path = Path(__file__).parent.parent.parent / "raw_data" / "osu_courses.json"
+    raw_courses = []
+    if raw_courses_path.exists():
+        with open(raw_courses_path, "r", encoding="utf-8") as f:
+            raw_courses = json.load(f)
+
     # Normalize input course IDs
     completed_ids = {normalize_course_id(c) for c in courses_taken}
     completed_ids_ordered = [normalize_course_id(c) for c in courses_taken]
 
-    # Stage 3a: Student skill state
-    student_skills = compute_student_skills(list(completed_ids), fingerprints)
+    # Stage 3a: Student skill state (with fallback to metadata-derived skills)
+    student_skills = compute_student_skills(list(completed_ids), fingerprints, raw_courses)
 
     # Stage 3b: Skill gaps
     skill_gaps = compute_skill_gaps(student_skills, target_career, skill_index)
@@ -276,26 +463,35 @@ def analyze_gap(
         "DevOps": ["git", "ci/cd", "jenkins", "devops", "testing", "debugging", "docker", "kubernetes"],
     }
 
-    career_skills_by_cat = {}
-    for skill in skill_index.get("career_paths", {}).get(target_career, {}).get("skills", [])[:60]:
+    resolved_career_key = _resolve_career_key(target_career, skill_index.get("career_paths", {}))
+
+    # Collect career-demanded skills per category (sum of demand_scores)
+    career_cat_totals = {}
+    career_cat_skills = {}  # track which skills belong to each category
+    for skill in skill_index.get("career_paths", {}).get(resolved_career_key, {}).get("skills", [])[:60]:
         for cat, keywords in category_groups.items():
             if any(kw in skill["name"] for kw in keywords):
-                career_skills_by_cat.setdefault(cat, []).append(skill["demand_score"])
+                career_cat_totals[cat] = career_cat_totals.get(cat, 0) + skill["demand_score"]
+                career_cat_skills.setdefault(cat, set()).add(skill["name"])
 
-    student_skills_by_cat = {}
-    for skill_name, prof in student_skills.items():
-        for cat, keywords in category_groups.items():
-            if any(kw in skill_name for kw in keywords):
-                student_skills_by_cat.setdefault(cat, []).append(prof)
+    # Normalize career target: strongest category ≈ 85%, others scaled proportionally
+    max_career_total = max(career_cat_totals.values()) if career_cat_totals else 1
+    scale_factor = 85.0 / max_career_total if max_career_total > 0 else 1
+
+    # Student coverage: what % of the career-demanded skills does the student have?
+    student_cat_coverage = {}
+    for cat, demanded_skills in career_cat_skills.items():
+        covered = sum(1 for s in demanded_skills if student_skills.get(s, 0) > 0)
+        student_cat_coverage[cat] = (covered / len(demanded_skills) * 100) if demanded_skills else 0
 
     radar_data = []
     for cat in category_groups:
-        career_scores = career_skills_by_cat.get(cat, [0])
-        student_scores = student_skills_by_cat.get(cat, [0])
+        career_val = career_cat_totals.get(cat, 0) * scale_factor
+        student_val = student_cat_coverage.get(cat, 0)
         radar_data.append({
             "category": cat,
-            "career_target": round(min(sum(career_scores) / max(len(career_scores), 1) * 100, 100), 1),
-            "student_current": round(min(sum(student_scores) / max(len(student_scores), 1) * 100, 100), 1),
+            "career_target": round(min(career_val, 100), 1),
+            "student_current": round(min(student_val, 100), 1),
         })
 
     # Which courses teach each gap skill

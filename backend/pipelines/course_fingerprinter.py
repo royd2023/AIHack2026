@@ -73,8 +73,8 @@ def fingerprint_course(course: dict, top_skills_str: str, reviews: list[dict] | 
     """Fingerprint a single course via Granite."""
     prompt = COURSE_FINGERPRINT_PROMPT.format(
         top_skills=top_skills_str,
-        number=course.get("number", course.get("id", "")),
-        title=course.get("title", ""),
+        number=course.get("course_number", course.get("number", course.get("id", ""))),
+        title=course.get("course_title", course.get("title", "")),
         description=course.get("description", "")[:800],
         learning_outcomes=course.get("learning_outcomes", "")[:1500],
     )
@@ -107,9 +107,9 @@ def fingerprint_course(course: dict, top_skills_str: str, reviews: list[dict] | 
             logger.warning(f"Review insight failed for {course.get('number', '?')}: {e}")
 
     return {
-        "number": course.get("number", course.get("id", "")),
-        "title": course.get("title", ""),
-        "credits": course.get("credits", 3),
+        "number": course.get("course_number", course.get("number", course.get("id", ""))),
+        "title": course.get("course_title", course.get("title", "")),
+        "credits": course.get("credit_hours", course.get("credits", 3)),
         "prerequisites": course.get("prerequisites", []),
         "corequisites": course.get("corequisites", []),
         "skills_taught": parsed.get("skills_taught", []),
@@ -158,10 +158,10 @@ def run_course_fingerprinting() -> dict:
     fingerprints: dict[str, dict] = {}
 
     for i, course in enumerate(courses):
-        course_id = course.get("id", course.get("number", f"course_{i}")).replace(" ", "")
-        course_number = course.get("number", course_id)
+        course_id = course.get("course_number", course.get("id", course.get("number", f"course_{i}"))).replace(" ", "")
+        course_number = course.get("course_number", course.get("number", course_id))
 
-        logger.info(f"  {i + 1}/{len(courses)}: {course_number} — {course.get('title', '?')}")
+        logger.info(f"  {i + 1}/{len(courses)}: {course_number} — {course.get('course_title', course.get('title', '?'))}")
 
         course_reviews = reviews_by_course.get(course_number, []) or reviews_by_course.get(course_id, [])
         fp = fingerprint_course(course, top_skills_str, course_reviews if course_reviews else None)

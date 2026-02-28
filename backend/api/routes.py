@@ -125,10 +125,10 @@ async def get_courses():
         return {
             "courses": [
                 {
-                    "id": c.get("id", c.get("number", "")).replace(" ", ""),
-                    "number": c.get("number", c.get("id", "")),
-                    "title": c.get("title", ""),
-                    "credits": c.get("credits", 3),
+                    "id": c.get("course_number", c.get("number", "")).replace(" ", ""),
+                    "number": c.get("course_number", c.get("number", "")),
+                    "title": c.get("course_title", c.get("title", "")),
+                    "credits": c.get("credit_hours", c.get("credits", "3")),
                     "prerequisites": c.get("prerequisites", []),
                 }
                 for c in raw
