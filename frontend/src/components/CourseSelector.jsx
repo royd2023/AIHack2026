@@ -38,8 +38,7 @@ export default function CourseSelector({ courses, selected, onChange }) {
     <div ref={containerRef} className="relative">
       {/* Search input */}
       <div
-        className="flex items-center gap-2 border border-ibm-gray-70 rounded-lg px-4 py-3 cursor-text"
-        style={{ backgroundColor: '#393939' }}
+        className="flex items-center gap-2 bg-ibm-gray-90 border border-ibm-gray-70 px-4 py-3 cursor-text transition-all duration-150 focus-within:border-ibm-blue"
         onClick={() => setIsOpen(true)}
       >
         <svg className="w-4 h-4 text-ibm-gray-50 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,15 +52,15 @@ export default function CourseSelector({ courses, selected, onChange }) {
           onFocus={() => setIsOpen(true)}
         />
         {selected.length > 0 && (
-          <span className="chip bg-ibm-blue/20 text-ibm-blue border border-ibm-blue/30">
-            {selected.length} selected
+          <span className="font-mono text-xs text-ibm-blue border border-ibm-blue/40 px-2 py-0.5 flex-shrink-0">
+            [ {selected.length} ]
           </span>
         )}
       </div>
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute z-40 w-full mt-2 border border-ibm-gray-70 rounded-lg shadow-2xl max-h-72 overflow-y-auto" style={{ backgroundColor: '#262626' }}>
+        <div className="absolute z-40 w-full mt-0 border border-ibm-gray-70 border-t-0 shadow-2xl max-h-72 overflow-y-auto" style={{ backgroundColor: '#1a1a1a' }}>
           {filtered.length === 0 ? (
             <div className="px-4 py-8 text-center text-ibm-gray-50 text-sm">
               No courses matching "{search}"
@@ -78,7 +77,7 @@ export default function CourseSelector({ courses, selected, onChange }) {
                     }`}
                 >
                   {/* Checkbox */}
-                  <div className={`w-4 h-4 rounded border flex-shrink-0 flex items-center justify-center transition-colors ${isSel ? 'bg-ibm-blue border-ibm-blue' : 'border-ibm-gray-50'
+                  <div className={`w-4 h-4 border flex-shrink-0 flex items-center justify-center transition-colors ${isSel ? 'bg-ibm-blue border-ibm-blue' : 'border-ibm-gray-50'
                     }`}>
                     {isSel && (
                       <svg className="w-3 h-3 text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -113,12 +112,10 @@ export default function CourseSelector({ courses, selected, onChange }) {
               key={course.id}
               type="button"
               onClick={() => toggle(course.id)}
-              className="inline-flex items-center gap-1.5 bg-ibm-blue/10 border border-ibm-blue/30 text-ibm-blue rounded-full px-3 py-1 text-xs font-medium hover:bg-ibm-red/10 hover:border-ibm-red/30 hover:text-ibm-red transition-colors group"
+              className="inline-flex items-center gap-1.5 bg-ibm-blue/10 border border-ibm-blue/30 text-ibm-blue px-2 py-1 text-xs font-mono hover:bg-ibm-red/10 hover:border-ibm-red/30 hover:text-ibm-red transition-colors group"
             >
-              <span className="font-mono">{course.number}</span>
-              <svg className="w-3 h-3 opacity-60 group-hover:opacity-100" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
+              {course.number}
+              <span className="opacity-50 group-hover:opacity-100 text-xs leading-none">×</span>
             </button>
           ))}
         </div>

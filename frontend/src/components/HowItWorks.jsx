@@ -3,122 +3,93 @@ import { useState } from 'react'
 export default function HowItWorks({ stats }) {
   const [open, setOpen] = useState(false)
 
-  const postings = stats?.job_postings_analyzed ?? '—'
-  const courses = stats?.courses_fingerprinted ?? '—'
+  const postings    = stats?.job_postings_analyzed ?? '—'
+  const courses     = stats?.courses_fingerprinted ?? '—'
   const dataSources = stats?.data_sources ?? 'LinkedIn, Indeed (job postings); syllabi.engineering.osu.edu (course data)'
 
   const cards = [
     {
-      icon: '📊',
-      color: 'ibm-blue',
+      color: 'text-ibm-blue',
+      borderColor: 'border-ibm-blue/20',
+      accentBar: 'bg-ibm-blue',
       title: 'Real Market Intelligence',
-      body: `We analyzed ${postings} real job postings from companies like JPMorgan, Amazon, and Google using IBM Granite to build a live skill demand index.`,
-      detail: `Data sources: ${dataSources}`,
-      badge: 'Stage 1',
+      step: '01',
+      body: `Analyzed ${postings} real job postings from JPMorgan, Amazon, Google using IBM Granite to build a live skill demand index.`,
+      detail: `Data: ${dataSources}`,
     },
     {
-      icon: '🎓',
-      color: 'ibm-cyan',
+      color: 'text-ibm-cyan',
+      borderColor: 'border-ibm-cyan/20',
+      accentBar: 'bg-ibm-cyan',
       title: 'Course DNA Fingerprinting',
-      body: `We used IBM Granite to extract skill fingerprints from ${courses} OSU courses using official syllabi, then computed semantic similarity using Granite Embeddings to detect redundancy.`,
-      detail: 'Source: syllabi.engineering.osu.edu — official OSU course syllabi',
-      badge: 'Stage 2',
+      step: '02',
+      body: `Used IBM Granite to extract skill fingerprints from ${courses} OSU courses via official syllabi, with Granite Embeddings to detect redundancy.`,
+      detail: 'Source: syllabi.engineering.osu.edu',
     },
     {
-      icon: '🧠',
-      color: 'ibm-purple',
+      color: 'text-ibm-purple',
+      borderColor: 'border-ibm-purple/20',
+      accentBar: 'bg-ibm-purple',
       title: 'Multi-Objective Optimization',
-      body: 'IBM Granite runs multi-objective optimization generating 3 Pareto-optimal plans balancing career alignment, prerequisite constraints, and workload distribution.',
-      detail: 'Gap scoring = demand_score × (1 − student_proficiency) per skill',
-      badge: 'Stage 3',
+      step: '03',
+      body: 'IBM Granite runs multi-objective optimization generating 3 Pareto-optimal plans balancing career alignment, prerequisites, and workload.',
+      detail: 'Gap score = demand_score × (1 − student_proficiency)',
     },
   ]
 
   return (
-    <div className="glass-card rounded-2xl overflow-hidden">
+    <div className="border border-ibm-gray-80">
       <button
-        className="w-full flex items-center justify-between px-6 py-5 hover:bg-ibm-gray-80/50 transition-colors"
+        className="w-full flex items-center justify-between px-6 py-5 hover:bg-ibm-gray-80/40 transition-colors"
         onClick={() => setOpen(!open)}
       >
-        <div className="flex items-center gap-3">
-          <span className="text-xl">🔬</span>
-          <div className="text-left">
-            <h3 className="text-base font-semibold text-white">How Our AI Works</h3>
-            <p className="text-ibm-gray-50 text-sm">3-stage IBM Granite pipeline — click to expand</p>
-          </div>
+        <div className="text-left">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-ibm-gray-50 mb-1">How Our AI Works</p>
+          <p className="font-mono text-xs text-ibm-gray-70">3-stage IBM Granite pipeline — click to expand</p>
         </div>
-        <svg className={`w-5 h-5 text-ibm-gray-50 transition-transform ${open ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-        </svg>
+        <span className={`font-mono text-ibm-gray-50 text-sm transition-transform inline-block ${open ? 'rotate-180' : ''}`}>▾</span>
       </button>
 
       {open && (
-        <div className="px-6 pb-6 animate-fade-in">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            {cards.map((card, i) => (
-              <div key={i} className="bg-ibm-gray-90 rounded-xl p-5 border border-ibm-gray-80">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">{card.icon}</span>
-                  <span className={`chip bg-${card.color}/10 text-${card.color} border-${card.color}/30 border text-xs`}>
-                    {card.badge}
-                  </span>
-                </div>
-                <h4 className="text-white font-semibold text-sm mb-2">{card.title}</h4>
+        <div className="border-t border-ibm-gray-80 animate-fade-in">
+          {/* Stage cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-ibm-gray-80">
+            {cards.map((card) => (
+              <div key={card.step} className="p-6 relative overflow-hidden">
+                <div className={`absolute top-0 left-0 right-0 h-0.5 ${card.accentBar}`} />
+                <span className={`font-mono text-xs ${card.color} block mb-3`}>{card.step}</span>
+                <h4 className={`font-mono font-bold uppercase text-xs ${card.color} mb-3`}>{card.title}</h4>
                 <p className="text-ibm-gray-30 text-xs leading-relaxed mb-3">{card.body}</p>
-                <p className="text-ibm-gray-50 text-xs italic">{card.detail}</p>
+                <p className="font-mono text-ibm-gray-50 text-xs">{card.detail}</p>
               </div>
             ))}
           </div>
 
           {/* Pipeline diagram */}
-          <div className="bg-ibm-gray-90 rounded-xl p-4 border border-ibm-gray-80">
-            <div className="flex items-center justify-center gap-3 flex-wrap text-xs">
-              <div className="flex items-center gap-2 bg-ibm-blue/10 border border-ibm-blue/20 rounded-lg px-3 py-2">
-                <span>📄</span>
-                <span className="text-ibm-blue font-mono">job_postings.json</span>
-              </div>
-              <span className="text-ibm-gray-50">→</span>
-              <div className="flex items-center gap-2 bg-ibm-gray-80 rounded-lg px-3 py-2 border border-ibm-gray-70">
-                <span className="text-ibm-gray-30">Granite</span>
-                <span className="text-ibm-gray-50 font-mono text-xs">skill_extractor</span>
-              </div>
-              <span className="text-ibm-gray-50">→</span>
-              <div className="flex items-center gap-2 bg-ibm-blue/10 border border-ibm-blue/20 rounded-lg px-3 py-2">
-                <span>📊</span>
-                <span className="text-ibm-blue font-mono">skill_index.json</span>
-              </div>
-            </div>
-            <div className="flex items-center justify-center gap-3 flex-wrap text-xs mt-3">
-              <div className="flex items-center gap-2 bg-ibm-cyan/10 border border-ibm-cyan/20 rounded-lg px-3 py-2">
-                <span>🎓</span>
-                <span className="text-ibm-cyan font-mono">osu_courses.json</span>
-              </div>
-              <span className="text-ibm-gray-50">→</span>
-              <div className="flex items-center gap-2 bg-ibm-gray-80 rounded-lg px-3 py-2 border border-ibm-gray-70">
-                <span className="text-ibm-gray-30">Granite + Embeddings</span>
-              </div>
-              <span className="text-ibm-gray-50">→</span>
-              <div className="flex items-center gap-2 bg-ibm-cyan/10 border border-ibm-cyan/20 rounded-lg px-3 py-2">
-                <span>🔬</span>
-                <span className="text-ibm-cyan font-mono">course_fingerprints.json</span>
-              </div>
-              <span className="text-ibm-gray-50">→</span>
-              <div className="flex items-center gap-2 bg-ibm-purple/10 border border-ibm-purple/20 rounded-lg px-3 py-2">
-                <span>📋</span>
-                <span className="text-ibm-purple font-mono">3 optimized plans</span>
-              </div>
+          <div className="border-t border-ibm-gray-80 px-6 py-5">
+            <div className="flex items-center gap-2 flex-wrap text-xs font-mono">
+              <span className="bg-ibm-blue/10 border border-ibm-blue/20 text-ibm-blue px-2 py-1">job_postings.json</span>
+              <span className="text-ibm-gray-70">→</span>
+              <span className="bg-ibm-gray-80 border border-ibm-gray-70 text-ibm-gray-30 px-2 py-1">Granite skill_extractor</span>
+              <span className="text-ibm-gray-70">→</span>
+              <span className="bg-ibm-blue/10 border border-ibm-blue/20 text-ibm-blue px-2 py-1">skill_index.json</span>
+              <span className="text-ibm-gray-70">→</span>
+              <span className="bg-ibm-cyan/10 border border-ibm-cyan/20 text-ibm-cyan px-2 py-1">osu_courses.json</span>
+              <span className="text-ibm-gray-70">→</span>
+              <span className="bg-ibm-gray-80 border border-ibm-gray-70 text-ibm-gray-30 px-2 py-1">Granite + Embeddings</span>
+              <span className="text-ibm-gray-70">→</span>
+              <span className="bg-ibm-purple/10 border border-ibm-purple/20 text-ibm-purple px-2 py-1">3 optimized plans</span>
             </div>
           </div>
 
-          {/* Footer models */}
-          <div className="text-center mt-4">
-            <p className="text-ibm-gray-70 text-xs">
+          <div className="border-t border-ibm-gray-80 px-6 py-4">
+            <p className="font-mono text-ibm-gray-70 text-xs text-center">
               Powered by{' '}
-              <span className="text-ibm-blue font-mono">ibm/granite-4-h-small</span>
+              <span className="text-ibm-blue">ibm/granite-4-h-small</span>
               {' '}and{' '}
-              <span className="text-ibm-cyan font-mono">ibm/granite-embedding-278m-multilingual</span>
+              <span className="text-ibm-cyan">ibm/granite-embedding-278m-multilingual</span>
               {' '}on{' '}
-              <span className="text-white font-semibold">IBM watsonx.ai</span>
+              <span className="text-white">IBM watsonx.ai</span>
             </p>
           </div>
         </div>

@@ -17,21 +17,17 @@ const IBM_LOGO = (
 
 function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-30 border-b border-ibm-gray-80 bg-ibm-gray-100/90 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="text-white font-bold text-lg tracking-tight">
-            <span className="gradient-text">Buckeye</span>
-            <span className="text-white">Pathfinder</span>
-          </div>
-          <div className="hidden sm:flex items-center gap-1.5 bg-ibm-blue/10 border border-ibm-blue/20 rounded-full px-3 py-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-ibm-blue" />
-            <span className="text-ibm-blue text-xs font-mono">IBM watsonx.ai</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-2 text-ibm-gray-50 text-xs">
-          <span className="hidden sm:inline">Powered by</span>
-          <span className="font-mono text-ibm-gray-30">ibm/granite-4-h-small</span>
+    <nav className="fixed top-0 left-0 right-0 z-30 border-b border-ibm-gray-80 bg-ibm-gray-100/95 backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between">
+        <span className="font-mono font-bold text-white text-sm tracking-tight">BuckeyePathfinder</span>
+        <div className="flex items-center gap-4">
+          <span className="hidden md:block font-mono text-xs text-ibm-gray-50">
+            IBM AI Skills Builder · OSU
+          </span>
+          <span className="font-mono text-xs text-ibm-blue border border-ibm-blue/40 px-2 py-0.5 hidden sm:inline-block">
+            [ ibm/granite-4-h-small ]
+          </span>
+          <span className="sm:hidden font-mono text-xs text-ibm-blue">[ IBM ]</span>
         </div>
       </div>
     </nav>
@@ -40,69 +36,83 @@ function Navbar() {
 
 function Hero({ onStart }) {
   return (
-    <section className="pt-14 min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Background grid */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: 'linear-gradient(#4589ff 1px, transparent 1px), linear-gradient(90deg, #4589ff 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
-      />
-      {/* Radial glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-ibm-blue/5 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative pt-12 min-h-screen flex flex-col items-center justify-center overflow-hidden bg-ibm-gray-100">
+      {/* Grain texture */}
+      <div className="noise-overlay absolute inset-0 pointer-events-none" />
 
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-ibm-gray-90 border border-ibm-gray-80 rounded-full px-4 py-2 mb-8 animate-fade-in">
-          <span className="w-2 h-2 rounded-full bg-ibm-green animate-pulse" />
-          <span className="text-ibm-gray-30 text-sm">IBM AI Skills Builder Hackathon @ The Ohio State University</span>
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 text-center">
+
+        {/* Eyebrow */}
+        <p className="font-mono text-xs text-ibm-gray-50 uppercase tracking-[0.22em] mb-10 animate-fade-in">
+          IBM AI Skills Builder · The Ohio State University
+        </p>
+
+        {/* Top rule — draws in from center */}
+        <div className="h-px bg-ibm-blue animate-rule-draw mb-8" style={{ animationDelay: '80ms' }} />
+
+        {/* Headline — two-line, huge mono */}
+        <div className="overflow-hidden">
+          <h1
+            className="font-mono font-bold uppercase text-white leading-[0.88] tracking-tight"
+            style={{ fontSize: 'clamp(52px, 14vw, 100px)' }}
+          >
+            <span className="block animate-slide-up" style={{ animationDelay: '180ms' }}>Buckeye</span>
+            <span className="block animate-slide-up" style={{ animationDelay: '280ms' }}>Pathfinder</span>
+          </h1>
         </div>
 
-        {/* Headline */}
-        <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4 leading-tight animate-slide-up">
-          <span className="gradient-text">BuckeyePathfinder</span>
-        </h1>
-        <p className="text-xl sm:text-2xl text-ibm-gray-30 mb-4 animate-slide-up" style={{ animationDelay: '100ms' }}>
-          AI-powered academic planning aligned with your career
-        </p>
-        <p className="text-ibm-gray-50 text-base mb-10 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '200ms' }}>
-          Powered by <span className="text-ibm-blue font-mono">IBM Granite</span> on <span className="text-white font-semibold">watsonx.ai</span> —
-          analyzes real job postings and OSU course syllabi to generate optimized course plans personalized to your goals.
-        </p>
+        {/* Bottom rule */}
+        <div className="h-px bg-ibm-blue animate-rule-draw mt-8 mb-10" style={{ animationDelay: '420ms' }} />
 
-        {/* CTA */}
-        <button
-          onClick={onStart}
-          className="group inline-flex items-center gap-3 bg-ibm-blue hover:bg-ibm-blue-hover text-white font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-200 hover:shadow-lg hover:shadow-ibm-blue/20 animate-slide-up"
-          style={{ animationDelay: '300ms' }}
+        {/* Body copy */}
+        <div className="animate-slide-up" style={{ animationDelay: '520ms' }}>
+          <p className="text-ibm-gray-30 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto">
+            AI-powered academic planning aligned with your career
+          </p>
+          <p className="font-mono text-xs text-ibm-gray-50 mt-3">
+            Powered by{' '}
+            <span className="text-ibm-blue">IBM Granite</span>
+            {' '}on{' '}
+            <span className="text-white">watsonx.ai</span>
+            {' '}— job postings · OSU syllabi · optimized plans
+          </p>
+        </div>
+
+        {/* CTA — sharp corners, inverts on hover */}
+        <div className="mt-10 mb-16 animate-fade-in" style={{ animationDelay: '660ms' }}>
+          <button
+            onClick={onStart}
+            className="group inline-flex items-center gap-3 font-mono text-sm font-bold uppercase tracking-[0.14em] px-10 py-4 bg-ibm-blue text-white border-2 border-ibm-blue transition-all duration-200 hover:bg-white hover:text-ibm-gray-100 active:scale-[0.98]"
+          >
+            Analyze My Path
+            <span className="text-base transition-transform group-hover:translate-x-1.5 duration-200">→</span>
+          </button>
+        </div>
+
+        {/* Stats — horizontal data bar */}
+        <div
+          className="border-t border-ibm-gray-80 pt-8 animate-fade-in"
+          style={{ animationDelay: '820ms' }}
         >
-          Analyze My Path
-          <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </button>
-
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-6 mt-16 max-w-xl mx-auto animate-fade-in" style={{ animationDelay: '500ms' }}>
-          {[
-            { value: '30+', label: 'Real job postings' },
-            { value: '35+', label: 'OSU courses' },
-            { value: '3', label: 'AI-generated plans' },
-          ].map(stat => (
-            <div key={stat.label} className="text-center">
-              <div className="text-2xl font-bold gradient-text font-mono">{stat.value}</div>
-              <div className="text-ibm-gray-50 text-xs mt-1">{stat.label}</div>
-            </div>
-          ))}
+          <div className="flex items-start justify-center divide-x divide-ibm-gray-80">
+            {[
+              { value: '30+', label: 'Job Postings' },
+              { value: '35+', label: 'OSU Courses' },
+              { value: '3',   label: 'AI Plans' },
+            ].map(stat => (
+              <div key={stat.label} className="flex-1 px-4 sm:px-8 text-center">
+                <div className="font-mono font-bold text-white text-3xl sm:text-4xl leading-none">{stat.value}</div>
+                <div className="font-mono text-ibm-gray-50 text-xs uppercase tracking-[0.18em] mt-2">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
+
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll hint */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg className="w-5 h-5 text-ibm-gray-70" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        <span className="font-mono text-ibm-gray-70 text-xs tracking-widest">↓</span>
       </div>
     </section>
   )
@@ -120,17 +130,28 @@ function InputSection({ courses, careers, onAnalyze, loading }) {
   }
 
   return (
-    <section className="py-20 px-6 bg-ibm-gray-90/50">
-      <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-white mb-3">Tell us about yourself</h2>
-          <p className="text-ibm-gray-50">Select your completed courses and target career to get started</p>
+    <section className="py-20 px-6 bg-ibm-gray-100 border-t border-ibm-gray-80">
+      <div className="max-w-4xl mx-auto">
+
+        {/* Section header */}
+        <div className="mb-12">
+          <p className="font-mono text-xs text-ibm-blue uppercase tracking-[0.22em] mb-3">
+            01 — Setup
+          </p>
+          <h2
+            className="font-mono font-bold uppercase text-white leading-tight"
+            style={{ fontSize: 'clamp(28px, 4vw, 42px)' }}
+          >
+            Tell us about you
+          </h2>
+          <div className="h-px bg-ibm-gray-80 mt-6" />
         </div>
 
-        <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-8 space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-12">
+
           {/* Name */}
           <div>
-            <label className="block text-sm font-medium text-ibm-gray-30 mb-2">
+            <label className="block font-mono text-xs uppercase tracking-[0.18em] text-ibm-gray-50 mb-4">
               Your Name
             </label>
             <input
@@ -138,30 +159,47 @@ function InputSection({ courses, careers, onAnalyze, loading }) {
               value={name}
               onChange={e => setName(e.target.value)}
               placeholder="e.g., Roy"
-              className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-colors border border-ibm-gray-70 focus:border-ibm-blue"
-              style={{ backgroundColor: '#393939', color: '#ffffff', colorScheme: 'dark' }}
+              className="w-full bg-transparent text-white font-mono text-lg placeholder-ibm-gray-70 border-0 border-b border-ibm-gray-70 pb-3 outline-none focus:border-ibm-blue transition-colors duration-200"
+              style={{ colorScheme: 'dark' }}
             />
           </div>
 
-          {/* Career path */}
+          {/* Career path — joined data-table tiles */}
           <div>
-            <label className="block text-sm font-medium text-ibm-gray-30 mb-2">
+            <label className="block font-mono text-xs uppercase tracking-[0.18em] text-ibm-gray-50 mb-4">
               Target Career Path
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {careers.map(c => (
+            <div className="border border-ibm-gray-80 flex flex-col sm:flex-row">
+              {careers.map((c, i) => (
                 <button
                   key={c.id}
                   type="button"
                   onClick={() => setCareer(c.id)}
-                  className={`flex flex-col items-start gap-1 p-4 rounded-xl border-2 text-left transition-all duration-200 ${career === c.id
-                      ? 'border-ibm-blue bg-ibm-blue/10 text-white'
-                      : 'border-ibm-gray-70 bg-ibm-gray-80/50 text-ibm-gray-30 hover:border-ibm-gray-50'
+                  className={`relative flex-1 flex flex-col justify-between p-5 text-left transition-colors duration-150
+                    border-b border-ibm-gray-80 sm:border-b-0 sm:border-r border-ibm-gray-80 last:border-b-0 last:border-r-0
+                    ${career === c.id
+                      ? 'bg-ibm-blue/8'
+                      : 'bg-transparent hover:bg-ibm-gray-90/70'
                     }`}
                 >
-                  <span className="text-2xl">{c.emoji}</span>
-                  <span className="font-semibold text-sm">{c.label}</span>
-                  <span className="text-xs text-ibm-gray-50 leading-tight">{c.description}</span>
+                  {/* Blue top bar on selected */}
+                  {career === c.id && (
+                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-ibm-blue" />
+                  )}
+                  <div>
+                    <span className="font-mono text-xs text-ibm-blue block mb-3 tracking-wider">
+                      0{i + 1}
+                    </span>
+                    <span className={`font-mono font-bold uppercase text-sm block leading-snug ${career === c.id ? 'text-white' : 'text-ibm-gray-30'}`}>
+                      {c.label}
+                    </span>
+                  </div>
+                  <span className="text-ibm-gray-50 text-xs mt-4 leading-relaxed block">
+                    {c.description}
+                  </span>
+                  {career === c.id && (
+                    <span className="absolute top-3 right-3 font-mono text-ibm-blue text-xs">✓</span>
+                  )}
                 </button>
               ))}
             </div>
@@ -169,9 +207,11 @@ function InputSection({ courses, careers, onAnalyze, loading }) {
 
           {/* Course selector */}
           <div>
-            <label className="block text-sm font-medium text-ibm-gray-30 mb-2">
-              Completed Courses
-              <span className="ml-2 text-ibm-gray-50 font-normal">(select all you've taken)</span>
+            <label className="block font-mono text-xs uppercase tracking-[0.18em] text-ibm-gray-50 mb-4">
+              Completed Courses{' '}
+              <span className="normal-case tracking-normal text-ibm-gray-70 ml-1">
+                — select all you've taken
+              </span>
             </label>
             <CourseSelector
               courses={courses}
@@ -181,31 +221,32 @@ function InputSection({ courses, careers, onAnalyze, loading }) {
           </div>
 
           {/* Submit */}
-          <button
-            type="submit"
-            disabled={selectedCourses.length === 0 || loading}
-            className="w-full flex items-center justify-center gap-3 bg-ibm-blue hover:bg-ibm-blue-hover disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold px-8 py-4 rounded-xl text-base transition-all duration-200 hover:shadow-lg hover:shadow-ibm-blue/20"
-          >
-            {loading ? (
-              <>
-                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Analyzing with IBM Granite...
-              </>
-            ) : (
-              <>
-                Analyze My Path
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </>
-            )}
-          </button>
+          <div>
+            <button
+              type="submit"
+              disabled={selectedCourses.length === 0 || loading}
+              className="group w-full flex items-center justify-center gap-3 font-mono text-sm font-bold uppercase tracking-[0.14em] px-10 py-4 bg-ibm-blue text-white border-2 border-ibm-blue transition-all duration-200 hover:bg-white hover:text-ibm-gray-100 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-ibm-blue disabled:hover:text-white"
+            >
+              {loading ? (
+                <>
+                  <span className="inline-block w-3 h-3 border border-white/40 border-t-white animate-spin" />
+                  Analyzing with IBM Granite...
+                </>
+              ) : (
+                <>
+                  Analyze My Path
+                  <span className="transition-transform group-hover:translate-x-1.5 duration-200 text-base">→</span>
+                </>
+              )}
+            </button>
 
-          {selectedCourses.length === 0 && (
-            <p className="text-ibm-gray-50 text-xs text-center">
-              Select at least one completed course to continue
-            </p>
-          )}
+            {selectedCourses.length === 0 && (
+              <p className="font-mono text-ibm-gray-70 text-xs uppercase tracking-[0.12em] text-center mt-4">
+                Select at least one course to continue
+              </p>
+            )}
+          </div>
+
         </form>
       </div>
     </section>
@@ -213,24 +254,33 @@ function InputSection({ courses, careers, onAnalyze, loading }) {
 }
 
 function ResultsSection({ data }) {
+  const [barsVisible, setBarsVisible] = useState(false)
+  useEffect(() => {
+    const t = setTimeout(() => setBarsVisible(true), 200)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
-    <section className="py-16 px-6">
+    <section className="py-16 px-6 bg-ibm-gray-100">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Personalized header */}
-        <div className="text-center animate-fade-in">
-          <h2 className="text-3xl font-bold text-white mb-2">
-            {data.student_name ? `${data.student_name}'s` : 'Your'} Career Intelligence Report
-          </h2>
-          <p className="text-ibm-gray-50">
-            Target:{' '}
-            <span className="text-ibm-blue capitalize font-medium">
-              {data.target_career?.replace(/_/g, ' ')}
-            </span>
-            {' '}·{' '}
-            <span className="text-ibm-gray-30">
-              {data.pipeline_stats?.job_postings_analyzed} job postings analyzed
-            </span>
+        <div className="animate-fade-in border-t border-ibm-gray-80 pt-12">
+          <p className="font-mono text-xs text-ibm-blue uppercase tracking-[0.22em] mb-3">
+            02 — Results
           </p>
+          <h2
+            className="font-mono font-bold uppercase text-white leading-tight"
+            style={{ fontSize: 'clamp(24px, 3.5vw, 38px)' }}
+          >
+            {data.student_name ? `${data.student_name}'s` : 'Your'} Intelligence Report
+          </h2>
+          <p className="font-mono text-xs text-ibm-gray-50 mt-3">
+            Target:{' '}
+            <span className="text-ibm-blue capitalize">{data.target_career?.replace(/_/g, ' ')}</span>
+            {' · '}
+            <span className="text-ibm-gray-30">{data.pipeline_stats?.job_postings_analyzed} job postings analyzed</span>
+          </p>
+          <div className="h-px bg-ibm-gray-80 mt-6" />
         </div>
 
         {/* Radar + top skills to acquire row */}
@@ -238,19 +288,17 @@ function ResultsSection({ data }) {
           <div className="lg:col-span-2">
             <SkillRadar data={data.radar_data} />
           </div>
-          <div className="glass-card rounded-2xl p-6">
-            <h3 className="text-base font-semibold text-white mb-4">Top Skills to Acquire</h3>
-            <div className="space-y-2">
+          <div className="border border-ibm-gray-80 p-6">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-ibm-gray-50 mb-5">Top Skills to Acquire</p>
+            <div className="space-y-3">
               {(data.top_skills_to_acquire || []).map((skill, i) => (
                 <div key={skill} className="flex items-center gap-3">
-                  <span className="text-ibm-gray-50 text-xs font-mono w-4">{i + 1}</span>
-                  <div className="flex-1 flex items-center gap-2">
-                    <span className="text-white text-sm capitalize">{skill}</span>
-                  </div>
-                  <div className="h-1.5 w-16 bg-ibm-gray-80 rounded-full overflow-hidden">
+                  <span className="text-ibm-blue text-xs font-mono w-5 flex-shrink-0">0{i + 1}</span>
+                  <span className="text-white text-sm capitalize flex-1 font-mono">{skill}</span>
+                  <div className="h-px w-16 bg-ibm-gray-80 overflow-hidden relative flex-shrink-0" style={{ height: '2px' }}>
                     <div
-                      className="h-full bg-ibm-blue rounded-full"
-                      style={{ width: `${Math.max(20, 100 - i * 10)}%` }}
+                      className="h-full bg-ibm-blue transition-all duration-700"
+                      style={{ width: barsVisible ? `${Math.max(20, 100 - i * 10)}%` : '0%', transitionDelay: `${i * 80}ms` }}
                     />
                   </div>
                 </div>
@@ -340,7 +388,7 @@ export default function App() {
 
       {error && (
         <div className="max-w-3xl mx-auto px-6 py-4">
-          <div className="bg-ibm-red/10 border border-ibm-red/30 rounded-xl px-6 py-4 text-ibm-red text-sm flex items-center gap-3">
+          <div className="bg-ibm-red/10 border border-ibm-red/30 px-6 py-4 text-ibm-red text-sm flex items-center gap-3 font-mono">
             <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
             </svg>
@@ -358,14 +406,14 @@ export default function App() {
       {/* Footer */}
       <footer className="border-t border-ibm-gray-80 mt-16 py-8 px-6">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-ibm-gray-70 text-sm text-center sm:text-left">
-            Built for <span className="text-ibm-gray-50">IBM AI Skills Builder Hackathon</span> @ The Ohio State University
-          </div>
-          <div className="flex items-center gap-2 text-xs">
+          <p className="font-mono text-xs text-ibm-gray-70 uppercase tracking-[0.15em] text-center sm:text-left">
+            IBM AI Skills Builder Hackathon · The Ohio State University
+          </p>
+          <div className="flex items-center gap-2 font-mono text-xs">
             <span className="text-ibm-gray-70">Powered by</span>
-            <span className="font-mono text-ibm-blue">ibm/granite-4-h-small</span>
+            <span className="text-ibm-blue">ibm/granite-4-h-small</span>
             <span className="text-ibm-gray-70">on</span>
-            <span className="text-white font-semibold">IBM watsonx.ai</span>
+            <span className="text-white">watsonx.ai</span>
           </div>
         </div>
       </footer>

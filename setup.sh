@@ -7,7 +7,7 @@ echo ""
 # Backend
 echo "1. Setting up Python virtual environment..."
 cd "$(dirname "$0")"
-python -m venv venv
+python3 -m venv venv
 source venv/Scripts/activate 2>/dev/null || source venv/bin/activate
 pip install -r backend/requirements.txt
 

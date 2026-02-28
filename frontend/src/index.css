@@ -96,3 +96,27 @@ body {
 .accordion-content.open {
   max-height: 1000px;
 }
+
+/* Animation fill-mode: elements start at their "from" state before firing */
+.animate-slide-up,
+.animate-fade-in {
+  animation-fill-mode: both;
+}
+
+/* Noise grain overlay */
+.noise-overlay {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  background-size: 200px 200px;
+  opacity: 0.028;
+  mix-blend-mode: screen;
+}
+
+/* Rule draw — horizontal line sweeps in from center */
+@keyframes ruleDraw {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+.animate-rule-draw {
+  animation: ruleDraw 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: center;
+}
